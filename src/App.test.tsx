@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { rest } from "msw";
+//import { rest } from "msw";
 import App from "./App";
 
 // describe("App", () => {
