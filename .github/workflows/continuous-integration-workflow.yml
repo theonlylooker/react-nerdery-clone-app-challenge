@@ -15,4 +15,4 @@ jobs:
           target_branch: gh-pages
           build_dir: build
         env:
-          GITHUB_TOKEN: ${{secrets.CLONE_APP_SECRET }}
+          GITHUB_TOKEN: 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
