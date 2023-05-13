@@ -3,6 +3,7 @@
 import Card from "./card/Card";
 import CardGridContainter from "./cardGridContainer/cardGridContainer";
 import Content from "./content/Content";
+import FilterPrice from "./filterPrice/FilterPrice";
 import Layout from "./layout/Layout";
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         </div>
         <div>
           <Content>
-            <div>filter floatant</div>
+            <FilterPrice />
             <CardGridContainter>
               {data &&
                 data?.map((place, index) => {
