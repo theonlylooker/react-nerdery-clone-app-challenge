@@ -1,5 +1,6 @@
 //import { createBrowserRouter } from "react-router-dom";
 
+import Content from "./content/Content";
 import Layout from "./layout/Layout";
 
 // const Div = styled.div`
@@ -16,7 +17,9 @@ function App() {
           top navbar
         </div>
         <div>
-          grid container
+          <Content>
+            <div>Cards</div>
+          </Content>
           <div
             style={{
               position: "fixed",
