@@ -2,6 +2,7 @@
 
 import CardGridContainter from "./cardGridContainer/cardGridContainer";
 import Content from "./content/Content";
+import FilterPrice from "./filterPrice/FilterPrice";
 import Layout from "./layout/Layout";
 
 // const Div = styled.div`
@@ -19,7 +20,7 @@ function App() {
         </div>
         <div>
           <Content>
-            <div>filter floatant</div>
+            <FilterPrice />
             <CardGridContainter>
               <div>Cards</div>
             </CardGridContainter>
