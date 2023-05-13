@@ -1,5 +1,6 @@
 //import { createBrowserRouter } from "react-router-dom";
 
+import CardGridContainter from "./cardGridContainer/cardGridContainer";
 import Content from "./content/Content";
 import Layout from "./layout/Layout";
 
@@ -18,7 +19,10 @@ function App() {
         </div>
         <div>
           <Content>
-            <div>Cards</div>
+            <div>filter floatant</div>
+            <CardGridContainter>
+              <div>Cards</div>
+            </CardGridContainter>
           </Content>
           <div
             style={{
