@@ -1,5 +1,7 @@
 //import { createBrowserRouter } from "react-router-dom";
 
+import Layout from "./layout/Layout";
+
 // const Div = styled.div`
 //   color: "#000000";
 //   background-color: ${(props) => props.theme.colors.error01};
@@ -9,7 +11,24 @@
 function App() {
   return (
     <>
-      <div></div>
+      <Layout display={"flex"} direction={"column"}>
+        <div style={{ position: "sticky", top: 0, backgroundColor: "red" }}>
+          top navbar
+        </div>
+        <div>
+          grid container
+          <div
+            style={{
+              position: "fixed",
+              bottom: 0,
+              backgroundColor: "blue",
+              width: "100%",
+            }}
+          >
+            bottom navbar
+          </div>
+        </div>
+      </Layout>
     </>
   );
 }
