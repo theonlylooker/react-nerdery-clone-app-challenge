@@ -3,6 +3,7 @@ import styled from "styled-components";
 const CardGridContainter = styled.div`
   display: grid;
   grid-template-columns: 1fr;
+  row-gap: 30px;
   @media (min-width: 550px) {
     grid-template-columns: 1fr 1fr;
   }

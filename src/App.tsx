@@ -13,28 +13,29 @@ function App() {
         <div style={{ position: "sticky", top: 0, backgroundColor: "red" }}>
           top navbar
         </div>
+        <Content>
+          <FilterPrice />
+          <CardGridContainter>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </CardGridContainter>
+        </Content>
         <div>
-          <Content>
-            <FilterPrice />
-            <CardGridContainter>
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-            </CardGridContainter>
-          </Content>
-          <div
-            style={{
-              position: "fixed",
-              bottom: 0,
-              backgroundColor: "blue",
-              width: "100%",
-            }}
-          >
-            bottom navbar
-          </div>
+          footer <br /> footer <br /> footer
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            bottom: 0,
+            backgroundColor: "blue",
+            width: "100%",
+          }}
+        >
+          bottom navbar
         </div>
       </Layout>
     </>
