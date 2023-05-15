@@ -35,8 +35,8 @@ const fontSize = {
 };
 
 const weight = {
-  light: "590",
-  bold: "400",
+  light: "400",
+  bold: "590",
 };
 
 const elevation = {
