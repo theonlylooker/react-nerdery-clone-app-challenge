@@ -4,6 +4,7 @@ import Card from "./card/Card";
 import CardGridContainter from "./cardGridContainer/cardGridContainer";
 import Content from "./content/Content";
 import FilterPrice from "./filterPrice/FilterPrice";
+import Footer from "./footer/Footer";
 import Layout from "./layout/Layout";
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
           </CardGridContainter>
         </Content>
         <div>
-          footer <br /> footer <br /> footer
+          <Footer />
         </div>
         <div
           style={{
