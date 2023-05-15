@@ -1,15 +1,10 @@
 //import { createBrowserRouter } from "react-router-dom";
 
+import Card from "./card/Card";
 import CardGridContainter from "./cardGridContainer/cardGridContainer";
 import Content from "./content/Content";
 import FilterPrice from "./filterPrice/FilterPrice";
 import Layout from "./layout/Layout";
-
-// const Div = styled.div`
-//   color: "#000000";
-//   background-color: ${(props) => props.theme.colors.error01};
-//   font-size: ${(props) => props.theme.fontSize.base};
-// `;
 
 function App() {
   return (
@@ -22,7 +17,12 @@ function App() {
           <Content>
             <FilterPrice />
             <CardGridContainter>
-              <div>Cards</div>
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
             </CardGridContainter>
           </Content>
           <div
