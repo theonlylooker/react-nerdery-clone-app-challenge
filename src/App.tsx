@@ -1,5 +1,6 @@
 //import { createBrowserRouter } from "react-router-dom";
 
+import Header from "./header/Header";
 import Layout from "./layout/Layout";
 
 // const Div = styled.div`
@@ -13,7 +14,7 @@ function App() {
     <>
       <Layout display={"flex"} direction={"column"}>
         <div style={{ position: "sticky", top: 0, backgroundColor: "red" }}>
-          top navbar
+          <Header />
         </div>
         <div>
           grid container
