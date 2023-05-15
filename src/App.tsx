@@ -13,6 +13,17 @@ function App() {
         <div style={{ position: "sticky", top: 0, backgroundColor: "red" }}>
           <Header />
         </div>
+        <Content>
+          <FilterPrice />
+          <CardGridContainter>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </CardGridContainter>
+        </Content>
         <div>
           <Content>
             <FilterPrice />
