@@ -1,6 +1,6 @@
 const colors = {
   shade01: "#FFFFFF",
-  shade02: "#222222 ",
+  shade02: "#222222",
   shade0205: "#22222205",
   shade0230: "#22222230",
   neutral01: "#F7F7F7",
@@ -20,6 +20,7 @@ const colors = {
   error02: "#C13515",
   accent01: "#F6D7DF",
   accent02: "#D03660",
+  linkGray: "#4B5563",
   discount: "#008A05",
   link: "#004CC4",
 };
