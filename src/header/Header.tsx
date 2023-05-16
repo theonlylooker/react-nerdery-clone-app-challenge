@@ -1,10 +1,11 @@
 import React from "react";
+import FilterCarrousel from "../filterCarrousel/FilterCarrousel";
 
 const Header = () => {
   return (
     <div>
       <div>a</div>
-      <div>b</div>
+      <FilterCarrousel />
     </div>
   );
 };
