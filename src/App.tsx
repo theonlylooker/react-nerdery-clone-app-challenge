@@ -3,12 +3,6 @@
 import Header from "./header/Header";
 import Layout from "./layout/Layout";
 
-// const Div = styled.div`
-//   color: "#000000";
-//   background-color: ${(props) => props.theme.colors.error01};
-//   font-size: ${(props) => props.theme.fontSize.base};
-// `;
-
 function App() {
   return (
     <>
