@@ -42,7 +42,7 @@ const weight = {
 
 const elevation = {
   elevation01: "0px 4px 18px rgba(0, 0, 0, 0.17)",
-  elevation02: "box-shadow: 0px 1px 5px -363px rgba(0, 0, 0, 0.19)",
+  elevation02: "0px 1px 5px  rgba(0, 0, 0, 0.19)",
   elevation03: "0px 6px 16px rgba(0, 0, 0, 0.12)",
 };
 

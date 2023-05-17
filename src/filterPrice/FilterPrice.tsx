@@ -8,7 +8,7 @@ const FilterDiv = styled.div`
   position: relative;
   display: flex;
   gap: 15px;
-  max-width: 700px;
+  width: 100%;
 
   > .title {
     font-size: ${(props) => `${props.theme.fontSize.l}`};

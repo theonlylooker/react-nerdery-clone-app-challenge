@@ -4,7 +4,6 @@ import { ReactComponent as Star } from "../assets/star.svg";
 import styled from "styled-components";
 
 const CardContainer = styled.div`
-  max-width: 303px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,7 +12,7 @@ const CardContainer = styled.div`
 `;
 
 const CardImage = styled.img<{ src: string }>`
-  width: 303px;
+  max-width: 100%;
   object-fit: cover;
   border-radius: 12px;
   content: url(${({ src }) => `${src}`});
