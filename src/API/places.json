@@ -1,0 +1,94 @@
+{
+	"places": [
+		{
+			"userId": "a44d654a-5d0a-48f2-a96a-8d5572459005",
+			"iconUser": "https://picsum.photos/seed/MX6a49XW/640/480",
+			"tipo": "mini",
+			"lugar": "Armenia",
+			"descripcion": "Omnis repellendus voluptatum expedita. Autem nesciunt labore a aut error blanditiis quod quisquam tenetur. Corporis ut perferendis sit. Praesentium sapiente vero impedit aliquam architecto suscipit. Velit nesciunt commodi ut sint iure laudantium.",
+			"precioDia": 1299104279822336,
+			"wished": true
+		},
+		{
+			"userId": "25cdc5ff-84d1-4461-bb8f-bdd0d9b86d0b",
+			"iconUser": "https://loremflickr.com/640/480?lock=7940596471693312",
+			"tipo": "mini",
+			"lugar": "Philippines",
+			"descripcion": "Aliquam explicabo in optio numquam totam minima qui neque laborum. Veritatis hic optio facere distinctio occaecati placeat eligendi voluptates minima. Hic error animi voluptatibus occaecati tempora.",
+			"precioDia": 2272771992190976,
+			"wished": true
+		},
+		{
+			"userId": "01da66fd-e565-47c2-b9d2-857dc1ca6a0d",
+			"iconUser": "https://picsum.photos/seed/fQAY7Iq3d/640/480",
+			"tipo": "domo",
+			"lugar": "Falkland Islands (Malvinas)",
+			"descripcion": "Saepe cumque unde. Similique eos error soluta magni laudantium neque dolorum.",
+			"precioDia": 1600712280637440,
+			"wished": true
+		},
+		{
+			"userId": "167e287e-7a5f-4b65-bf7e-d5c9346afa43",
+			"iconUser": "https://picsum.photos/seed/8k4QYcO8/640/480",
+			"tipo": "farm",
+			"lugar": "Cook Islands",
+			"descripcion": "Excepturi aut voluptatibus molestias sequi aliquam accusantium. Impedit aperiam voluptates esse perferendis aperiam sequi. Porro voluptatem corrupti porro voluptatem. Eos non omnis sapiente.",
+			"precioDia": 5509435589918720,
+			"wished": true
+		},
+		{
+			"userId": "58bd2a26-0e0b-44eb-8c50-cb5986064491",
+			"iconUser": "https://picsum.photos/seed/sCrBVaCQv8/640/480",
+			"tipo": "mini",
+			"lugar": "Antigua and Barbuda",
+			"descripcion": "Alias impedit laborum vel nemo magnam dolor ab ea eaque. Earum totam nostrum quibusdam illo quibusdam magnam possimus.",
+			"precioDia": 7703185808424960,
+			"wished": false
+		},
+		{
+			"userId": "cfdc4925-1aaf-4cbd-828b-f9c00372fc3c",
+			"iconUser": "https://loremflickr.com/640/480?lock=6746962214780928",
+			"tipo": "departamento",
+			"lugar": "Guam",
+			"descripcion": "Dolores totam blanditiis ratione quia laborum similique quasi aut. Similique temporibus dolores cupiditate pariatur quos excepturi. Fugit ipsum quisquam eveniet quaerat ratione tempore sunt.",
+			"precioDia": 883613570695168,
+			"wished": true
+		},
+		{
+			"userId": "d9d59152-6181-4216-b8b5-11d13247407f",
+			"iconUser": "https://loremflickr.com/640/480?lock=2815183309242368",
+			"tipo": "domo",
+			"lugar": "Egypt",
+			"descripcion": "Deserunt nulla laudantium quod provident. Esse dolore deleniti illo itaque sunt modi beatae fuga fugiat.",
+			"precioDia": 615514529333248,
+			"wished": false
+		},
+		{
+			"userId": "d79aa0f1-d5b1-4b5e-9bae-464d39b722ae",
+			"iconUser": "https://picsum.photos/seed/eEIfVf/640/480",
+			"tipo": "farm",
+			"lugar": "Turkey",
+			"descripcion": "Eveniet vitae nulla. Labore vel explicabo consequuntur nam hic optio sequi fuga impedit.",
+			"precioDia": 8185634336276480,
+			"wished": true
+		},
+		{
+			"userId": "a5453123-e8d7-48f9-aa07-374efcdb6488",
+			"iconUser": "https://picsum.photos/seed/moKKGHv/640/480",
+			"tipo": "mini",
+			"lugar": "Mozambique",
+			"descripcion": "A facere repudiandae. Cumque iure aut beatae labore incidunt deserunt dicta. Temporibus voluptatum odit placeat repudiandae ratione deserunt aliquid officia quam. Molestiae modi voluptate. Alias architecto optio fugit explicabo eveniet suscipit dolorum. Similique dolorum laudantium voluptas ad saepe fugit maiores.",
+			"precioDia": 3834539166138368,
+			"wished": true
+		},
+		{
+			"userId": "77d8a4b9-8992-4de3-90bf-a9595c7357fc",
+			"iconUser": "https://picsum.photos/seed/9jkhf6/640/480",
+			"tipo": "departamento",
+			"lugar": "Sweden",
+			"descripcion": "Eos rem quas itaque unde facere suscipit quis. Inventore accusamus qui eveniet consequatur. Ipsam ipsa neque debitis sed vitae.",
+			"precioDia": 7778461066199040,
+			"wished": true
+		}
+	]
+}
