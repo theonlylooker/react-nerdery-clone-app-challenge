@@ -3,7 +3,7 @@ import Search from "../search/Search";
 
 const Header = () => {
   return (
-    <div>
+    <HeaderI>
       <Search />
       <div>b</div>
     </div>

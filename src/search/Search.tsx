@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const SearchI = styled.div`
   border-radius: 24px;
+  background-color: ${({ theme }) => `${theme.colors.shade01}`};
   position: relative;
   padding: 10px 20px;
   display: flex;
@@ -25,24 +26,30 @@ const SearchI = styled.div`
   }
 `;
 
+const SearchContainer = styled.div`
+  padding: 15px 20px;
+`;
+
 const Search = () => {
   return (
-    <SearchI onClick={() => alert("search")}>
-      <SearchGlass width={15.7} height={15.7} />
-      <div>
-        <h1>En cualquier lugar del mundo</h1>
-        <p>Cualquier semana - ¿Cuántos?</p>
-      </div>
-      <div
-        className="filterSearch"
-        onClick={(e) => {
-          e.stopPropagation();
-          alert("this another click");
-        }}
-      >
-        <FilterIcon width={16} height={16} />
-      </div>
-    </SearchI>
+    <SearchContainer>
+      <SearchI onClick={() => alert("search")}>
+        <SearchGlass width={15.7} height={15.7} />
+        <div>
+          <h1>En cualquier lugar del mundo</h1>
+          <p>Cualquier semana - ¿Cuántos?</p>
+        </div>
+        <div
+          className="filterSearch"
+          onClick={(e) => {
+            e.stopPropagation();
+            alert("this another click");
+          }}
+        >
+          <FilterIcon width={16} height={16} />
+        </div>
+      </SearchI>
+    </SearchContainer>
   );
 };
 

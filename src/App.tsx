@@ -11,20 +11,15 @@ function App() {
   return (
     <>
       <Layout display={"flex"} direction={"column"}>
-        <div style={{ position: "sticky", top: 0, backgroundColor: "red" }}>
+        <div
+          style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 1,
+          }}
+        >
           <Header />
         </div>
-        <Content>
-          <FilterPrice />
-          <CardGridContainter>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </CardGridContainter>
-        </Content>
         <div>
           <Content>
             <FilterPrice />
