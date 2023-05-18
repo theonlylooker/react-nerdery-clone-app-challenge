@@ -52,11 +52,11 @@ const FilterCarrousel = () => {
     <Carrousel>
       <FilterItem onClick={() => alert("filter click")}>
         <House className="carrouselItem" />
-        <span>Cabañas</span>
+        <span>Cabin</span>
       </FilterItem>
       <FilterItem onClick={() => alert("filter click")}>
         <Department className="carrouselItem" />
-        <span>Departamento</span>
+        <span>Department</span>
       </FilterItem>
       <FilterItem onClick={() => alert("filter click")}>
         <Cave className="carrouselItem" />

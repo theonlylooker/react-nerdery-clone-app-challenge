@@ -1,32 +1,25 @@
 import { faker } from "@faker-js/faker";
 import fs from "fs";
-type Place = "cabañas" | "departamento" | "cuevas" | "mini" | "domo" | "farm";
-
-interface place {
-  userId: string;
-  iconUser: string;
-  tipo: Place;
-  lugar: string;
-  descripcion: string;
-  precioDia: number;
-  wished: boolean;
-}
+import { place } from "../card/type";
 
 const createRandomPlace = (): place => {
   return {
-    userId: faker.string.uuid(),
+    ownerId: faker.string.uuid(),
+    image: faker.image.url(),
     iconUser: faker.image.url(),
-    tipo: faker.helpers.arrayElement([
-      "cabañas",
-      "departamento",
-      "cuevas",
+    type: faker.helpers.arrayElement([
+      "cabins",
+      "department",
+      "caves",
       "mini",
-      "domo",
+      "dome",
       "farm",
     ]),
-    lugar: faker.location.country(),
-    descripcion: faker.lorem.sentences(),
-    precioDia: faker.number.int(),
+    country: faker.location.country(),
+    city: faker.location.city(),
+    rating: faker.number.float({ min: 0, max: 5, precision: 0.1 }),
+    description: faker.lorem.sentence(),
+    priceDay: faker.number.int({ min: 30, max: 100 }),
     wished: faker.datatype.boolean(),
   };
 };
@@ -36,7 +29,7 @@ const createNPlaces = (numPlaces: number) => {
 };
 
 const places = {
-  places: createNPlaces(10),
+  places: createNPlaces(100),
 };
 
 fs.writeFileSync("src/API/places.json", JSON.stringify(places, null, "\t"));
