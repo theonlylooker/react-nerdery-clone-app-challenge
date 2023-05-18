@@ -10,23 +10,13 @@ import Layout from "./layout/Layout";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { place } from "./card/type";
+import useAsync from "./hooks/useAsync";
 
 function App() {
   const [placeData, setPlaceData] = useState<{ places: place[] } | null>();
   //memoize placeData to be a stable variable
   const URL = "http://localhost:3030/places";
-  useEffect(() => {
-    const fetch = async () => {
-      const response = await axios.get(URL);
-      const data = response.data;
-      if (data) {
-        setPlaceData(data);
-        console.log(placeData, "entre");
-      }
-    };
-    fetch();
-  }, [URL]);
-
+  const { data, error, loading } = useAsync<place[]>(URL);
   return (
     <>
       <Layout display={"flex"} direction={"column"}>
@@ -43,8 +33,8 @@ function App() {
           <Content>
             <FilterPrice />
             <CardGridContainter>
-              {placeData &&
-                placeData.places?.map((place) => (
+              {data &&
+                data?.map((place) => (
                   <Card
                     key={place.ownerId}
                     image={place.image}
