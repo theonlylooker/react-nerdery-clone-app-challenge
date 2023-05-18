@@ -1,81 +1,53 @@
-import React from "react";
-import { ReactComponent as Heart } from "../assets/heart.svg";
+import React, { FC } from "react";
 import { ReactComponent as Star } from "../assets/star.svg";
-import styled from "styled-components";
+import {
+  CardContainer,
+  CardContent,
+  CardHeart,
+  CardImage,
+  CardInfo,
+  CardRating,
+  CardSpanDefault,
+  CardSpanSecondary,
+} from "./styles";
+import { Card as cardProps } from "./type";
 
-const CardContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  cursor: pointer;
-`;
-
-const CardImage = styled.img<{ src: string }>`
-  max-width: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  content: url(${({ src }) => `${src}`});
-`;
-const CardHeart = styled(Heart)`
-  position: absolute;
-  top: 18px;
-  right: 18px;
-`;
-
-const CardContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-const CardInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-const CardRating = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const CardSpanDefault = styled.span<{ display?: string }>`
-  display: ${({ display }) => (display ? `${display}` : "")};
-  color: ${(props) => `${props.theme.colors.shade02}`};
-  font-size: ${(props) => `${props.theme.fontSize.m}`};
-  font-weight: ${(props) => `${props.theme.weight.bold}`};
-`;
-const CardSpanSecondary = styled.span<{ display?: string }>`
-  display: ${({ display }) => (display ? `${display}` : "")};
-  color: ${(props) => `${props.theme.colors.neutral08}`};
-  font-size: ${(props) => `${props.theme.fontSize.m}`};
-`;
-
-const Card = () => {
+const Card: FC<cardProps> = ({
+  ownerId,
+  iconUser,
+  image,
+  city,
+  country,
+  rating,
+  description,
+  priceDay,
+  wished,
+}) => {
+  console.log(image);
   return (
     <CardContainer onClick={() => alert("hola")}>
       <div className="image">
-        <CardImage src="https://picsum.photos/400/350" />
+        <CardImage src={image} />
         <CardHeart />
       </div>
       <CardContent>
         <CardInfo>
           <div className="info">
             <CardSpanDefault display="block">
-              Groveland, California
+              {city},{country}
             </CardSpanDefault>
-            <CardSpanSecondary display="block">
-              Yosemite National Park
-            </CardSpanSecondary>
+            <CardSpanSecondary display="block">{description}</CardSpanSecondary>
             <CardSpanSecondary display="block">Oct 23 - 28</CardSpanSecondary>
           </div>
           <div className="price">
-            <CardSpanDefault>$289</CardSpanDefault>
+            <CardSpanDefault>${priceDay} </CardSpanDefault>
             night
           </div>
         </CardInfo>
         <div className="rating">
           <CardRating>
             <Star />
-            <span>4.91</span>
+            <span>{rating}</span>
           </CardRating>
         </div>
       </CardContent>

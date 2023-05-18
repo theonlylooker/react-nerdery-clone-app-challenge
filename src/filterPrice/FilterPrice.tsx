@@ -81,11 +81,9 @@ const FilterDiv = styled.div`
 const FilterPrice = () => {
   return (
     <FilterDiv>
-      <p className="title">Mostrar el Precio total</p>
+      <p className="title">Display total price</p>
       <div className="content">
-        <p className="subtitle">
-          Incluidas todas las tarifas, pero sin contar los impuestos
-        </p>
+        <p className="subtitle">Includes all fees, before taxes</p>
         <label className="switch">
           <input className="holi" type="checkbox" />
           <span className="slider round"></span>
