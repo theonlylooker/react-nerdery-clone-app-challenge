@@ -36,8 +36,8 @@ const Search = () => {
       <SearchI onClick={() => alert("search")}>
         <SearchGlass width={15.7} height={15.7} />
         <div>
-          <h1>En cualquier lugar del mundo</h1>
-          <p>Cualquier semana - ¿Cuántos?</p>
+          <h1>Anywhere</h1>
+          <p>Any week - Add guests</p>
         </div>
         <div
           className="filterSearch"
