@@ -7,16 +7,45 @@ import Content from "./content/Content";
 import FilterPrice from "./filterPrice/FilterPrice";
 import Footer from "./footer/Footer";
 import Layout from "./layout/Layout";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { place } from "./card/type";
-import useAsync from "./hooks/useAsync";
-
+import useInfiniteScroll from "./hooks/useInfiniteScroll";
 function App() {
-  const [placeData, setPlaceData] = useState<{ places: place[] } | null>();
-  //memoize placeData to be a stable variable
+  const [placeData, setPlaceData] = useState<place[] | null>();
+  const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
+  const [page, setPage] = useState({ location: 1 });
+  const test3 = useRef(1);
   const URL = "http://localhost:3030/places";
-  const { data, error, loading } = useAsync<place[]>(URL);
+  const { data, getNext, hasMore } = useInfiniteScroll(page);
+  const observer = useRef(
+    new IntersectionObserver((entries) => {
+      const first = entries[0];
+
+      if (first.isIntersecting) {
+        setPage((prevPage) => ({ ...page, location: prevPage.location + 1 }));
+      }
+    })
+  );
+
+  useEffect(() => {
+    if (hasMore) {
+      getNext();
+    }
+  }, [page]);
+
+  useEffect(() => {
+    const currentElement = lastElement;
+    const currentObserver = observer.current;
+    if (currentElement) {
+      currentObserver.observe(currentElement);
+    }
+    return () => {
+      if (currentElement) {
+        currentObserver.unobserve(currentElement);
+      }
+    };
+  }, [lastElement]);
+
   return (
     <>
       <Layout display={"flex"} direction={"column"}>
@@ -34,20 +63,37 @@ function App() {
             <FilterPrice />
             <CardGridContainter>
               {data &&
-                data?.map((place) => (
-                  <Card
-                    key={place.ownerId}
-                    image={place.image}
-                    ownerId={place.ownerId}
-                    description={place.description}
-                    iconUser={place.iconUser}
-                    country={place.country}
-                    city={place.city}
-                    rating={place.rating}
-                    priceDay={place.priceDay}
-                    wished={place.wished}
-                  />
-                ))}
+                data?.map((place, index) => {
+                  return index === data.length - 1 && hasMore ? (
+                    <div ref={setLastElement} key={index}>
+                      <Card
+                        key={place.ownerId}
+                        image={place.image}
+                        ownerId={place.ownerId}
+                        description={place.description}
+                        iconUser={place.iconUser}
+                        country={place.country}
+                        city={place.city}
+                        rating={place.rating}
+                        priceDay={place.priceDay}
+                        wished={place.wished}
+                      />
+                    </div>
+                  ) : (
+                    <Card
+                      key={index}
+                      image={place.image}
+                      ownerId={place.ownerId}
+                      description={place.description}
+                      iconUser={place.iconUser}
+                      country={place.country}
+                      city={place.city}
+                      rating={place.rating}
+                      priceDay={place.priceDay}
+                      wished={place.wished}
+                    />
+                  );
+                })}
             </CardGridContainter>
           </Content>
         </div>

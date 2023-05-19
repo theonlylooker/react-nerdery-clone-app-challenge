@@ -35,9 +35,11 @@ const createRandomUser = (): user => {
 const createNUsers = (numUsers: number) => {
   return Array.from({ length: numUsers }, createRandomUser);
 };
+const COUNT = 4;
 
 const users = {
-  users: createNUsers(4),
+  count: COUNT,
+  data: createNUsers(COUNT),
 };
 
 fs.writeFileSync("src/API/users.json", JSON.stringify(users, null, "\t"));

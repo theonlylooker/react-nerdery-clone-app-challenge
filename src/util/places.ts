@@ -28,8 +28,11 @@ const createNPlaces = (numPlaces: number) => {
   return Array.from({ length: numPlaces }, createRandomPlace);
 };
 
-const places = {
-  places: createNPlaces(100),
-};
+const COUNT = 100;
 
+const places = createNPlaces(COUNT);
+// const places = {
+//   count: COUNT,
+//   results: createNPlaces(COUNT),
+// };
 fs.writeFileSync("src/API/places.json", JSON.stringify(places, null, "\t"));

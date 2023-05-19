@@ -23,7 +23,6 @@ const Card: FC<cardProps> = ({
   priceDay,
   wished,
 }) => {
-  console.log(image);
   return (
     <CardContainer onClick={() => alert("hola")}>
       <div className="image">
