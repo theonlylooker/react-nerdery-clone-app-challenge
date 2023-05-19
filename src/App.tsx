@@ -102,7 +102,6 @@ function App() {
           style={{
             position: "fixed",
             bottom: 0,
-            backgroundColor: "blue",
             width: "100%",
           }}
         >
