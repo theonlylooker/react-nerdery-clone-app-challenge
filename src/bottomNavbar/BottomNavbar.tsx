@@ -22,13 +22,13 @@ const BottomNavbar = () => {
   return (
     <BottomNavbarLayout>
       <BottomNavbarItem>
-        <Search /> Explora
+        <Search /> Explore
       </BottomNavbarItem>
       <BottomNavbarItem>
-        <Avatar /> Favoritos
+        <Avatar /> Wishlist
       </BottomNavbarItem>
       <BottomNavbarItem>
-        <Heart /> Iniciar Sesion
+        <Heart /> Log in
       </BottomNavbarItem>
     </BottomNavbarLayout>
   );
