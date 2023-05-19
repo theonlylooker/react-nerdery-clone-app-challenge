@@ -99,16 +99,17 @@ function App() {
                 })}
             </CardGridContainter>
           </Content>
-          <div
-            style={{
-              position: "fixed",
-              bottom: 0,
-              backgroundColor: "blue",
-              width: "100%",
-            }}
-          >
-            bottom navbar
-          </div>
+        </div>
+        <Footer />
+
+        <div
+          style={{
+            position: "fixed",
+            bottom: 0,
+            width: "100%",
+          }}
+        >
+          <BottomNavbar />
         </div>
       </Layout>
     </>
