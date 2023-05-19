@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios, { Axios, AxiosError } from "axios";
 import { currentConsumer } from "../consumers/index";
 
 const useAsync = <T,>(
