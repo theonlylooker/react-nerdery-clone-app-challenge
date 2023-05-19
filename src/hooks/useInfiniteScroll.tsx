@@ -12,7 +12,6 @@ const useInfiniteScroll = (page: {
   const [hasMore, setHasMore] = useState(true);
   const [data, setData] = useState<place[]>([]);
   //const [page, setPage] = useState({ location: 1 });
-  console.log(page);
   const URL = `http://localhost:3030/places?_page=${page.location}`;
   useEffect(() => {
     getNext();

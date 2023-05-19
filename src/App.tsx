@@ -10,6 +10,7 @@ import Layout from "./layout/Layout";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { place } from "./card/type";
 import useInfiniteScroll from "./hooks/useInfiniteScroll";
+import BottomNavbar from "./bottomNavbar/BottomNavbar";
 function App() {
   const [placeData, setPlaceData] = useState<place[] | null>();
   const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
@@ -107,7 +108,7 @@ function App() {
             width: "100%",
           }}
         >
-          bottom navbar
+          <BottomNavbar />
         </div>
       </Layout>
     </>
