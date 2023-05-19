@@ -1,5 +1,3 @@
-//import { createBrowserRouter } from "react-router-dom";
-
 import Header from "./header/Header";
 import Card from "./card/Card";
 import CardGridContainter from "./cardGridContainer/cardGridContainer";
