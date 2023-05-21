@@ -1,6 +1,6 @@
 const colors = {
   shade01: "#FFFFFF",
-  shade02: "#222222 ",
+  shade02: "#222222",
   shade0205: "#22222205",
   shade0230: "#22222230",
   neutral01: "#F7F7F7",
@@ -20,6 +20,7 @@ const colors = {
   error02: "#C13515",
   accent01: "#F6D7DF",
   accent02: "#D03660",
+  linkGray: "#4B5563",
   discount: "#008A05",
   link: "#004CC4",
 };
@@ -41,7 +42,7 @@ const weight = {
 
 const elevation = {
   elevation01: "0px 4px 18px rgba(0, 0, 0, 0.17)",
-  elevation02: "box-shadow: 0px 1px 5px -363px rgba(0, 0, 0, 0.19)",
+  elevation02: "0px 1px 5px  rgba(0, 0, 0, 0.19)",
   elevation03: "0px 6px 16px rgba(0, 0, 0, 0.12)",
 };
 

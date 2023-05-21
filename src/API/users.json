@@ -2,6 +2,7 @@
 	"count": 4,
 	"data": [
 		{
+<<<<<<< HEAD
 			"nombre": "Enrique O'Reilly-Hackett",
 			"foto": "https://avatars.githubusercontent.com/u/3842521",
 			"reseñas": 74497484914688,
@@ -52,6 +53,58 @@
 			"estudio": "Orchestrator",
 			"hobby": "quae officiis voluptatum",
 			"resumen": "Iure voluptatem iste neque adipisci atque labore. Eius esse tempora minus at quos expedita rem. Eligendi aliquid sunt a nemo aliquid."
+=======
+			"nombre": "Ms. Lynda Conroy",
+			"foto": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/577.jpg",
+			"reseñas": 1466924252790784,
+			"correo": "Anais_Hills@hotmail.com",
+			"pais": 7537411005349888,
+			"tipo": "user",
+			"nacimiento": "2022-12-11T23:04:49.709Z",
+			"profesion": "Customer Infrastructure Producer",
+			"estudio": "Assistant",
+			"hobby": "eveniet quidem explicabo",
+			"resumen": "Rem facere dolorum temporibus reprehenderit recusandae illum deserunt consequatur eveniet. Quae accusantium maiores. Nostrum veniam sapiente iste."
+		},
+		{
+			"nombre": "Dr. Leon White",
+			"foto": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/478.jpg",
+			"reseñas": 3825941847474176,
+			"correo": "Kathleen.Beier@yahoo.com",
+			"pais": 6361040512090112,
+			"tipo": "host",
+			"nacimiento": "2022-09-24T13:00:54.672Z",
+			"profesion": "Future Web Producer",
+			"estudio": "Planner",
+			"hobby": "laborum culpa eum",
+			"resumen": "Vitae occaecati architecto ullam in commodi necessitatibus. Dolorum iste tempore voluptatum. Voluptatem dicta non accusamus nemo cupiditate."
+		},
+		{
+			"nombre": "Abel Kutch",
+			"foto": "https://avatars.githubusercontent.com/u/49666313",
+			"reseñas": 1542670625275904,
+			"correo": "Chester.Huels@yahoo.com",
+			"pais": 5609572620304384,
+			"tipo": "host",
+			"nacimiento": "2022-07-30T21:38:19.572Z",
+			"profesion": "Chief Functionality Consultant",
+			"estudio": "Planner",
+			"hobby": "eum cum totam",
+			"resumen": "Distinctio impedit culpa. Vel natus minus ullam totam voluptatibus magni quas harum et. Quis nemo deserunt voluptas alias dolore numquam illum."
+		},
+		{
+			"nombre": "Bessie Huels",
+			"foto": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/999.jpg",
+			"reseñas": 145537420492800,
+			"correo": "Addison85@gmail.com",
+			"pais": 7702715742289920,
+			"tipo": "host",
+			"nacimiento": "2022-09-04T04:03:26.641Z",
+			"profesion": "Investor Group Architect",
+			"estudio": "Officer",
+			"hobby": "alias quos quam",
+			"resumen": "Quam sint excepturi illo iure saepe error eos. Esse atque debitis veniam doloribus porro commodi sequi cum. Recusandae consequuntur eius vel qui maxime voluptate voluptates rem molestias."
+>>>>>>> 4976c29acfbeb538e4ab46a9eff9ffd99c58130c
 		}
 	]
 }

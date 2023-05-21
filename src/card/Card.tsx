@@ -1,5 +1,4 @@
-import React from "react";
-import { ReactComponent as Heart } from "../assets/heart.svg";
+import React, { FC } from "react";
 import { ReactComponent as Star } from "../assets/star.svg";
 import { useNavigate } from "react-router-dom";
 import {
@@ -34,29 +33,27 @@ const Card: FC<cardProps> = ({
   return (
     <CardContainer onClick={navigateTo}>
       <div className="image">
-        <CardImage src="https://picsum.photos/400/350" />
+        <CardImage src={image} />
         <CardHeart />
       </div>
       <CardContent>
         <CardInfo>
           <div className="info">
             <CardSpanDefault display="block">
-              Groveland, California
+              {city},{country}
             </CardSpanDefault>
-            <CardSpanSecondary display="block">
-              Yosemite National Park
-            </CardSpanSecondary>
+            <CardSpanSecondary display="block">{description}</CardSpanSecondary>
             <CardSpanSecondary display="block">Oct 23 - 28</CardSpanSecondary>
           </div>
           <div className="price">
-            <CardSpanDefault>$289</CardSpanDefault>
+            <CardSpanDefault>${priceDay} </CardSpanDefault>
             night
           </div>
         </CardInfo>
         <div className="rating">
           <CardRating>
             <Star />
-            <span>4.91</span>
+            <span>{rating}</span>
           </CardRating>
         </div>
       </CardContent>
