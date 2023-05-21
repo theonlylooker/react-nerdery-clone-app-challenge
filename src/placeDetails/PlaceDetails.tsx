@@ -6,7 +6,7 @@ const PlaceDetails = () => {
   return (
     <div>
       <div>Place Header component</div>
-      <div>place Information component</div>
+      <PlaceDetails />
       <div>place Host component</div>
       <div>Place About component</div>
       <div style={{ position: "fixed", bottom: 0 }}>
