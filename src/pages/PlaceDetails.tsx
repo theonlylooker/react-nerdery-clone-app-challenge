@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import PlaceHeader from "../placeHeader/PlaceHeader";
 
 const PlaceDetails = () => {
   const { id } = useParams();
