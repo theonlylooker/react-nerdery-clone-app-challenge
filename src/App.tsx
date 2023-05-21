@@ -16,12 +16,40 @@ function App() {
           <Content>
             <div>filter floatant</div>
             <CardGridContainter>
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              {data &&
+                data?.map((place, index) => {
+                  return index === data.length - 1 && hasMore ? (
+                    <div ref={setLastElement} key={index}>
+                      <Card
+                        key={place.placeId}
+                        placeId={place.placeId}
+                        image={place.image}
+                        ownerId={place.ownerId}
+                        description={place.description}
+                        iconUser={place.iconUser}
+                        country={place.country}
+                        city={place.city}
+                        rating={place.rating}
+                        priceDay={place.priceDay}
+                        wished={place.wished}
+                      />
+                    </div>
+                  ) : (
+                    <Card
+                      key={place.placeId}
+                      placeId={place.placeId}
+                      image={place.image}
+                      ownerId={place.ownerId}
+                      description={place.description}
+                      iconUser={place.iconUser}
+                      country={place.country}
+                      city={place.city}
+                      rating={place.rating}
+                      priceDay={place.priceDay}
+                      wished={place.wished}
+                    />
+                  );
+                })}
             </CardGridContainter>
           </Content>
           <div

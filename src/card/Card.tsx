@@ -1,58 +1,38 @@
 import React from "react";
 import { ReactComponent as Heart } from "../assets/heart.svg";
 import { ReactComponent as Star } from "../assets/star.svg";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import {
+  CardContainer,
+  CardContent,
+  CardHeart,
+  CardImage,
+  CardInfo,
+  CardRating,
+  CardSpanDefault,
+  CardSpanSecondary,
+} from "./styles";
+import { Card as cardProps } from "./type";
 
-const CardContainer = styled.div`
-  max-width: 303px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  cursor: pointer;
-`;
+const Card: FC<cardProps> = ({
+  ownerId,
+  placeId,
+  iconUser,
+  image,
+  city,
+  country,
+  rating,
+  description,
+  priceDay,
+  wished,
+}) => {
+  const navigate = useNavigate();
 
-const CardImage = styled.img<{ src: string }>`
-  width: 303px;
-  object-fit: cover;
-  border-radius: 12px;
-  content: url(${({ src }) => `${src}`});
-`;
-const CardHeart = styled(Heart)`
-  position: absolute;
-  top: 18px;
-  right: 18px;
-`;
-
-const CardContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-const CardInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-const CardRating = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const CardSpanDefault = styled.span<{ display?: string }>`
-  display: ${({ display }) => (display ? `${display}` : "")};
-  color: ${(props) => `${props.theme.colors.shade02}`};
-  font-size: ${(props) => `${props.theme.fontSize.m}`};
-  font-weight: ${(props) => `${props.theme.weight.bold}`};
-`;
-const CardSpanSecondary = styled.span<{ display?: string }>`
-  display: ${({ display }) => (display ? `${display}` : "")};
-  color: ${(props) => `${props.theme.colors.neutral08}`};
-  font-size: ${(props) => `${props.theme.fontSize.m}`};
-`;
-
-const Card = () => {
+  const navigateTo = () => {
+    navigate(`/place/${placeId}`);
+  };
   return (
-    <CardContainer onClick={() => alert("hola")}>
+    <CardContainer onClick={navigateTo}>
       <div className="image">
         <CardImage src="https://picsum.photos/400/350" />
         <CardHeart />
