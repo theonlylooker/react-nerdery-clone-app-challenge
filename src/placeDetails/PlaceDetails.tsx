@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import PlaceDate from "../placeDate/PlaceDate";
 
 const PlaceDetails = () => {
   const { id } = useParams();
@@ -9,8 +10,8 @@ const PlaceDetails = () => {
       <div>place Information component</div>
       <div>place Host component</div>
       <div>Place About component</div>
-      <div style={{ position: "fixed", bottom: 0 }}>
-        Place Date Separation component
+      <div style={{ position: "fixed", bottom: 0, width: "100%" }}>
+        <PlaceDate />
       </div>
     </div>
   );
