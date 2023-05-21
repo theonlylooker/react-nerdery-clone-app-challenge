@@ -10,8 +10,8 @@ const PlaceDetails = () => {
       <PlaceDetails />
       <div>place Host component</div>
       <div>Place About component</div>
-      <div style={{ position: "fixed", bottom: 0 }}>
-        Place Date Separation component
+      <div style={{ position: "fixed", bottom: 0, width: "100%" }}>
+        <PlaceDate />
       </div>
     </div>
   );
