@@ -4,6 +4,7 @@ import PlaceHeader from "../placeHeader/PlaceHeader";
 import PlaceDate from "../placeDate/PlaceDate";
 import PlaceInformation from "../placeInformation/PlaceInformation";
 import PlaceAbout from "../placeAbout/PlaceAbout";
+import PlaceHost from "../placeHost/PlaceHost";
 
 const PlaceDetails = () => {
   const { id } = useParams();
