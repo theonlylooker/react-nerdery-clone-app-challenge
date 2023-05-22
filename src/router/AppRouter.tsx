@@ -1,12 +1,12 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "../App";
-import PlaceDetails from "../placeDetails/PlaceDetails";
+import Home from "../pages/Home";
+import PlaceDetails from "../pages/PlaceDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
   },
   {
     path: "/wishlist",
