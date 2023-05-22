@@ -3,6 +3,7 @@ import { ReactComponent as LeftArrow } from "../assets/leftArrow.svg";
 import { ReactComponent as Share } from "../assets/share.svg";
 import { ReactComponent as Heart } from "../assets/heart.svg";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const PlaceHeaderLayout = styled.div`
   display: flex;
@@ -14,12 +15,19 @@ const PlaceHeaderLayout = styled.div`
     align-items: center;
   }
 `;
+const BackIcon = styled(LeftArrow)`
+  cursor: pointer;
+`;
 
 const PlaceHeader = () => {
+  const navigate = useNavigate();
+  const getBack = () => {
+    navigate(-1);
+  };
   return (
     <PlaceHeaderLayout>
       <div>
-        <LeftArrow />
+        <BackIcon onClick={getBack} />
         <div>Alojamientos</div>
       </div>
       <div>
