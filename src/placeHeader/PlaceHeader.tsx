@@ -1,4 +1,3 @@
-import React from "react";
 import { ReactComponent as LeftArrow } from "../assets/leftArrow.svg";
 import { ReactComponent as Share } from "../assets/share.svg";
 import { ReactComponent as Heart } from "../assets/heart.svg";

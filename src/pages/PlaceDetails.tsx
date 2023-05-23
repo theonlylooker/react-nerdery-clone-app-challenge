@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import PlaceHeader from "../placeHeader/PlaceHeader";
 import PlaceDate from "../placeDate/PlaceDate";
@@ -13,7 +12,7 @@ const PlaceDetails = () => {
       <PlaceHeader />
       <div>image</div>
       <PlaceInformation />
-      <div>place Host component</div>
+      <PlaceHost />
       <PlaceAbout />
       <div style={{ position: "fixed", bottom: 0, width: "100%" }}>
         <PlaceDate />
