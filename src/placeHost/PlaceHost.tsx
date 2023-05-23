@@ -58,7 +58,12 @@ const MessageButton = styled.button`
   max-width: fit-content;
 `;
 const PlaceHostFact = styled.div`
-  font-size: ${({ theme }) => `${theme.fontSize.l}`};
+  > p {
+    font-size: ${({ theme }) => `${theme.fontSize.l}`};
+  }
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
 `;
 
 const PlaceHost = () => {

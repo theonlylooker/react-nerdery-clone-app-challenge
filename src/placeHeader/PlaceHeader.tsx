@@ -14,6 +14,10 @@ const PlaceHeaderLayout = styled.div`
     align-items: center;
   }
 `;
+
+const PlaceHeaderText = styled.div`
+  font-weight: ${({ theme }) => `${theme.weight.bold}`};
+`;
 const BackIcon = styled(LeftArrow)`
   cursor: pointer;
 `;
@@ -27,7 +31,7 @@ const PlaceHeader = () => {
     <PlaceHeaderLayout>
       <div>
         <BackIcon onClick={getBack} />
-        <div>Alojamientos</div>
+        <PlaceHeaderText>Header</PlaceHeaderText>
       </div>
       <div>
         <Share />
