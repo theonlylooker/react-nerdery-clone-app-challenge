@@ -34,6 +34,7 @@ const fontSize = {
   l: "16px",
   xl: "18px",
   xxl: "22px",
+  xxxl: "26px",
 };
 
 const weight = {
