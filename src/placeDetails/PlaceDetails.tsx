@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import PlaceHeader from "../placeHeader/PlaceHeader";
 import PlaceDate from "../placeDate/PlaceDate";
+import PlaceHost from "../placeHost/PlaceHost";
 import PlaceInformation from "../placeInformation/PlaceInformation";
 
 const PlaceDetails = () => {

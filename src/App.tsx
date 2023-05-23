@@ -19,7 +19,6 @@ function App() {
   const observer = useRef(
     new IntersectionObserver((entries) => {
       const first = entries[0];
-
       if (first.isIntersecting) {
         setPage((prevPage) => ({ ...page, location: prevPage.location + 1 }));
       }
