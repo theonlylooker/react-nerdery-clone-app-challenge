@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { place } from "../card/type";
+import { place } from "../home/card/type";
 import { currentConsumer } from "../consumers/index";
 
 const useInfiniteScroll = (page: {

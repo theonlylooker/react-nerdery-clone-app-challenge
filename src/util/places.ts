@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import fs from "fs";
-import { place } from "../card/type";
+import { place } from "../home/card/type";
 
 const createRandomPlace = (): place => {
   return {

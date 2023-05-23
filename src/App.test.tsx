@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 //import { rest } from "msw";
-import Home from "./pages/Home";
+import Home from "./home/Home";
 
 // describe("App", () => {
 //   it("renders headline", () => {
