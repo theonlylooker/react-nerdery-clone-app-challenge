@@ -12,5 +12,28 @@ export interface place {
   priceDay: number;
   wished: boolean;
   rating: number;
+  //
+  //main features array objeto{ type:, text:  }
+  //type features array objeto{ type:, text:  }
+  /*
+   nombre
+   reseñas
+   calificacion
+   años anfitriando
+   array objetos information{
+   {
+    type: estudio
+    text: lo que estudio
+   },
+  }
+   */
+  /*
+  another feature{
+    {
+      type:
+      text:
+    }
+  }
+   */
 }
 export type Card = Omit<place, "type">;

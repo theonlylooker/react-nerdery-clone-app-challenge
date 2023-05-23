@@ -11,6 +11,7 @@ const colors = {
   neutral06: "#B0B0B0",
   neutral07: "#717171",
   neutral08: "#5E5E5E",
+  neutral09: "#F0EFE9",
   primary01: "#F6475F",
   primary02: "#FF385C",
   gradient01Step_01: "#C72D65",
@@ -33,6 +34,7 @@ const fontSize = {
   l: "16px",
   xl: "18px",
   xxl: "22px",
+  xxxl: "26px",
 };
 
 const weight = {
