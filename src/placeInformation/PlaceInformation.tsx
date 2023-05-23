@@ -20,21 +20,25 @@ const PlaceInformationStatistics = styled.div`
 `;
 const PlaceInformationHeader = styled.div`
   padding-bottom: 20px;
-  border-bottom: 1px solid black;
+  border-bottom: ${({ theme }) => `1px solid ${theme.colors.neutral03}`};
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 const PlaceInformationFeature = styled.div`
   padding: 20px 0px;
-  border-bottom: 1px solid black;
+  border-bottom: ${({ theme }) => `1px solid ${theme.colors.neutral03}`};
 `;
 
 const PlaceInformationFeatureHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
 `;
 
 const PlaceInformationFeatureCard = styled.div`
-  border: 1px solid black;
+  border: ${({ theme }) => `1px solid ${theme.colors.neutral06}`};
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -42,6 +46,9 @@ const PlaceInformationFeatureCard = styled.div`
   padding: 16px;
   justify-content: space-between;
   gap: 20px;
+  div:last-child {
+    font-size: ${({ theme }) => `${theme.fontSize.s}`};
+  }
 `;
 const PlaceInformationCardGrid = styled.div`
   display: grid;
