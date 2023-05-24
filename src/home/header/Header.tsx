@@ -1,12 +1,16 @@
+import { FC } from "react";
 import { Search } from "../search/Search";
 import { FilterCarrousel } from "../filterCarrousel/FilterCarrousel";
 import { HeaderI } from "./styles";
 
-export const Header = () => {
+interface Header {
+  setPage: (props: { location: number }) => void;
+}
+export const Header: FC<Header> = ({ setPage }) => {
   return (
     <HeaderI>
       <Search />
-      <FilterCarrousel />
+      <FilterCarrousel setPage={setPage} />
     </HeaderI>
   );
 };

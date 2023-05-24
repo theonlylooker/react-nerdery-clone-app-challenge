@@ -4,7 +4,7 @@ import { BottomNavbarItem, BottomNavbarLayout } from "./styles.ts";
 export const BottomNavbar = () => {
   return (
     <BottomNavbarLayout>
-      <BottomNavbarItem to={"/"}>
+      <BottomNavbarItem to={"/"} reloadDocument>
         <Search /> Explore
       </BottomNavbarItem>
       <BottomNavbarItem to={"/wishlist"}>

@@ -11,11 +11,13 @@ import { Footer } from "../shared/";
 import { useState, useRef, useEffect } from "react";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
 import { StickyHeader, FixedBottomNav } from "./styles";
+import { useSearchParams } from "react-router-dom";
 
 export const Home = () => {
   const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
   const [page, setPage] = useState({ location: 1 });
-  const URL = "http://localhost:3030/places";
+  //const [searchParams, setSearchParams] = useSearchParams();
+  //const URL = "http://localhost:3030/places";
   const { data, getNext, hasMore } = useInfiniteScroll(page);
   const observer = useRef(
     new IntersectionObserver((entries) => {
@@ -25,6 +27,13 @@ export const Home = () => {
       }
     })
   );
+
+  // useEffect(() => {
+  //   const URL = `http://localhost:3030/places?${
+  //     searchParams.get("type") ? `type=${searchParams.get("type")}&` : ""
+  //   }_page=${page.location}`;
+  //   console.log(URL);
+  // }, [searchParams]);
 
   useEffect(() => {
     if (hasMore) {
@@ -49,7 +58,7 @@ export const Home = () => {
     <>
       <Layout display={"flex"} direction={"column"}>
         <StickyHeader>
-          <Header />
+          <Header setPage={setPage} />
         </StickyHeader>
         <div>
           <Content>
