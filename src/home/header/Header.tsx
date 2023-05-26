@@ -5,12 +5,13 @@ import { HeaderI } from "./styles";
 
 interface Header {
   setPage: (props: { location: number }) => void;
+  setCategory: (cateogory: string) => void;
 }
-export const Header: FC<Header> = ({ setPage }) => {
+export const Header: FC<Header> = ({ setPage, setCategory }) => {
   return (
     <HeaderI>
       <Search />
-      <FilterCarrousel setPage={setPage} />
+      <FilterCarrousel setPage={setPage} setCategory={setCategory} />
     </HeaderI>
   );
 };

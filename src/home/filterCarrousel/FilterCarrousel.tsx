@@ -5,9 +5,13 @@ import { useSearchParams } from "react-router-dom";
 
 interface FilterCarrousel {
   setPage: (props: { location: number }) => void;
+  setCategory: (props: string) => void;
 }
 
-export const FilterCarrousel: FC<FilterCarrousel> = ({ setPage }) => {
+export const FilterCarrousel: FC<FilterCarrousel> = ({
+  setPage,
+  setCategory,
+}) => {
   const [searchParams, setSearchParams] = useSearchParams();
   return (
     <Carrousel>
