@@ -11,6 +11,7 @@ import { Footer } from "../shared";
 import { useState, useRef, useEffect } from "react";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
 import { StickyHeader, FixedBottomNav } from "./styles";
+import WishListModal from "./wishListModal/WishListModal";
 
 export const AuthorizedHome = () => {
   const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
@@ -92,8 +93,8 @@ export const AuthorizedHome = () => {
             </CardGridContainter>
           </Content>
         </div>
+        <WishListModal />
         <Footer />
-
         <FixedBottomNav>
           <BottomNavbar />
         </FixedBottomNav>
