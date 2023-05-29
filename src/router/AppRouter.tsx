@@ -1,11 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home } from "../home/Home";
-import { PlaceDetails } from "../pageDetails/PlaceDetails";
+import { UnauthorizedHome } from "../unathorizedHome";
+import { PlaceDetails } from "../pageDetails";
+import { Signup } from "../signup&login";
+import ProtectedRoute from "../context/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <ProtectedRoute />,
   },
   {
     path: "/wishlist",
@@ -13,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <>login</>,
+    element: <Signup />,
   },
   {
     path: "/place/:id",

@@ -1,4 +1,4 @@
-export { Home } from "./Home";
+export { UnauthorizedHome } from "./UnauthorizedHome";
 export { Header } from "./header/Header";
 export { Card } from "./card/Card";
 export { CardGridContainter } from "./cardGridContainer/cardGridContainer";
