@@ -68,7 +68,11 @@ const SignupForm = styled.form`
 
 export const Phone = () => {
   return (
-    <SignupForm action="">
+    <SignupForm
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
       <SignupSelect>
         <select name="" id="">
           <option value="">

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import { Button } from "../types";
+import axios from "axios";
 
 const SignupButton = styled.button<Button>`
   border-radius: 12px;
@@ -46,12 +47,47 @@ const SignupForm = styled.form`
   gap: 20px;
 `;
 
-export const Email = () => {
-  return (
+type signUp = {
+  email: string;
+  password: string;
+};
+interface Email {
+  nextStep: boolean;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  signUp: signUp;
+  handleSignUpState: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export const Email: FC<Email> = ({
+  nextStep,
+  handleSubmit,
+  signUp,
+  handleSignUpState,
+}) => {
+  return nextStep ? (
     <SignupForm>
       <SignupInput>
-        <input type="text" />
-        <label htmlFor="">Email</label>
+        <input
+          name="password"
+          id="password"
+          type="text"
+          value={signUp.password}
+          onChange={handleSignUpState}
+        />
+        <label htmlFor="password">Password</label>
+      </SignupInput>
+    </SignupForm>
+  ) : (
+    <SignupForm onSubmit={handleSubmit}>
+      <SignupInput>
+        <input
+          name="email"
+          id="email"
+          type="text"
+          value={signUp.email}
+          onChange={handleSignUpState}
+        />
+        <label htmlFor="email">Email</label>
       </SignupInput>
       <SignupButton>Continue</SignupButton>
     </SignupForm>

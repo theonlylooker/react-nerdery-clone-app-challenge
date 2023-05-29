@@ -50,3 +50,10 @@ export const SignupLink = styled.a`
 export const SignupSection = styled.div`
   padding-top: 40px;
 `;
+
+export const SignupVerificationSpan = styled.span`
+  text-align: initial;
+  font-size: ${({ theme }) => `${theme.fontSize.base}`};
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
