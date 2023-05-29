@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Phone, Email } from ".";
 import {
   SignupVerificationSpan,
@@ -10,17 +10,20 @@ import {
   SignupSection,
   SignupSeparation,
 } from "./styles";
+import { SignupForm, SignupInput } from "./shared/styles";
 import axios from "axios";
+import { UserContext } from "../context/Context";
+import { useNavigate } from "react-router-dom";
 interface register {
   accessToken: string;
   user: {
     email: string;
     id: string;
-    name: string;
-    picture: string;
-    reviews: number;
-    country: number;
-    type: string;
+    name?: string;
+    picture?: string;
+    reviews?: number;
+    country?: number;
+    type?: string;
     birthday?: Date;
     career?: string;
     estudy?: string;
@@ -34,24 +37,45 @@ export const Signup = () => {
   const [loginActive, setLoginActive] = useState(true);
   const [newUser, setnewUser] = useState(true);
   const [nextStep, setNextStep] = useState(false);
-  const [email, setEmail] = useState("");
   const [signUp, setSignUp] = useState(initSignState);
+  const globalUser = useContext(UserContext);
+  const navigate = useNavigate();
+
   const handleAction = () => {
     setLoginActive(!loginActive);
   };
   const handleRegister = async () => {
     try {
+      console.log(signUp);
       const response = await axios.post<register>(
         "http://localhost:3000/register",
         signUp
       );
       const data = response.data;
       localStorage.setItem("airbnbToken", data.accessToken);
+      setLoginActive(!loginActive);
+      globalUser.setUser(data.user);
+      setSignUp(initSignState);
+      navigate("/");
     } catch (error) {
       console.log("error");
     }
   };
 
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3000/login", signUp);
+      const data = response.data;
+      localStorage.setItem("airbnbToken", data.accessToken);
+      setLoginActive(!loginActive);
+      globalUser.setUser(data.user);
+      setSignUp(initSignState);
+      navigate("/");
+    } catch (error) {
+      console.log("error");
+    }
+  };
   const handleSignUpState = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignUp({ ...signUp, [e.currentTarget.name]: e.currentTarget.value });
   };
@@ -59,64 +83,85 @@ export const Signup = () => {
   const handleContinue = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.get(
-        `http://localhost:3000/users?email=${email}`
+      const response = await axios.get<[]>(
+        `http://localhost:3000/users?email=${signUp.email}`
       );
-      const data = await response.data;
-      if (data) {
+      const data = response.data;
+      if (data.length !== 0) {
+        console.log("entre", data);
         setnewUser(false);
+      } else {
+        setNextStep(true);
       }
     } catch (error) {
       console.log(error);
-    }
-    if (newUser) {
-      setNextStep(true);
-      setEmail(email);
     }
   };
 
   return (
     <SignupLayout>
-      <SignupH1>Log in or sign up</SignupH1>
-      {signUp.email}
-      {signUp.password}
-      <SignupSection>
-        <SignupH2>Welcome to Airbnb</SignupH2>
-        {/* sign up/login with phone or email */}
-        {loginActive ? (
-          <Phone />
-        ) : (
-          <Email
-            handleSubmit={handleContinue}
-            nextStep={nextStep}
-            signUp={signUp}
-            handleSignUpState={handleSignUpState}
-          />
-        )}
-      </SignupSection>
-
-      {nextStep ? (
+      {newUser ? (
         <>
-          <SignupButton onClick={handleAction}>Agree and Continue</SignupButton>
-          <SignupVerificationSpan>
-            By selecting Agree and continue, I agree to Airbnb's
-            <a href="">Terms of Service, Payments Terms of Service</a>, and
-            Nondiscrimination Policy and acknowledge the
-            <a href="">Privacy Policy</a> .
-          </SignupVerificationSpan>
+          <SignupH1>Log in or sign up</SignupH1>
+          <SignupSection>
+            <SignupH2>Welcome to Airbnb</SignupH2>
+            {/* sign up/login with phone or email */}
+            {loginActive ? (
+              <Phone />
+            ) : (
+              <Email
+                handleSubmit={handleContinue}
+                nextStep={nextStep}
+                signUp={signUp}
+                handleSignUpState={handleSignUpState}
+              />
+            )}
+          </SignupSection>
+
+          {nextStep ? (
+            <>
+              <SignupButton onClick={handleRegister}>
+                Agree and Continue
+              </SignupButton>
+              <SignupVerificationSpan>
+                By selecting Agree and continue, I agree to Airbnb's
+                <a href="">Terms of Service, Payments Terms of Service</a>, and
+                Nondiscrimination Policy and acknowledge the
+                <a href="">Privacy Policy</a> .
+              </SignupVerificationSpan>
+            </>
+          ) : (
+            <>
+              <SignupSeparation>
+                <hr />
+                <span>or</span>
+                <hr />
+              </SignupSeparation>
+              <SignupButton onClick={handleAction} action="secondary">
+                Continue with {loginActive ? "Email" : "Phone"}
+              </SignupButton>
+            </>
+          )}
         </>
       ) : (
         <>
-          <SignupSeparation>
-            <hr />
-            <span>or</span>
-            <hr />
-          </SignupSeparation>
-          <SignupButton onClick={handleAction} action="secondary">
-            Continue with {loginActive ? "Email" : "Phone"}
-          </SignupButton>
+          <SignupH1>Log in</SignupH1>
+          <SignupForm onSubmit={handleLogin}>
+            <SignupInput>
+              <input
+                name="password"
+                id="password"
+                type="text"
+                value={signUp.password}
+                onChange={handleSignUpState}
+              />
+              <label htmlFor="password">Password</label>
+            </SignupInput>
+            <SignupButton>Log In</SignupButton>
+          </SignupForm>
         </>
       )}
+
       <SignupLink href="#">Need Help?</SignupLink>
     </SignupLayout>
   );

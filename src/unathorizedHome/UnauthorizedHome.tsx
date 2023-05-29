@@ -7,12 +7,12 @@ import {
   Layout,
   BottomNavbar,
 } from ".";
-import { Footer } from "../shared/";
+import { Footer } from "../shared";
 import { useState, useRef, useEffect } from "react";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
 import { StickyHeader, FixedBottomNav } from "./styles";
 
-export const Home = () => {
+export const UnauthorizedHome = () => {
   const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
   const [page, setPage] = useState({ location: 1 });
   const URL = "http://localhost:3030/places";
