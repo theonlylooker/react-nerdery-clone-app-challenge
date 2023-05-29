@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { UnauthorizedHome } from "../unathorizedHome";
-import AuthorizedHome from "../authorizedHome/AuthorizedHome";
+import { AuthorizedHome } from "../authorizedHome/";
 
 const ProtectedRoute = () => {
   // const [authorized, setAuthorized] = useState<null | string>();
@@ -8,10 +8,8 @@ const ProtectedRoute = () => {
   // }, [localStorage.getItem("airbnbToken")]);
   const user = localStorage.getItem("airbnbToken");
   if (!user) {
-    console.log("no usuario");
     return <UnauthorizedHome />;
   }
-  console.log("si usuario");
   return <AuthorizedHome />;
 };
 
