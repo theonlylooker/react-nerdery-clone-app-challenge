@@ -33,4 +33,7 @@ const COUNT = 100;
 
 const places = createNPlaces(COUNT);
 
-fs.writeFileSync("src/API/places.json", JSON.stringify(places, null, "\t"));
+fs.writeFileSync(
+  "src/API/local/places.json",
+  JSON.stringify(places, null, "\t")
+);
