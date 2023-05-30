@@ -55,16 +55,16 @@ export const Home = () => {
     // }
     if (!prefix.queryKey) {
       //if (prefix.queryKey === null || prefix.queryKey === "") {
-      console.log(`http://localhost:3030/places?_page=${prefix.pageParam}`);
+      console.log(`http://localhost:3000/places?_page=${prefix.pageParam}`);
       return await currentConsumer<place[]>(
-        `http://localhost:3030/places?_page=${prefix.pageParam}`
+        `http://localhost:3000/places?_page=${prefix.pageParam}`
       );
     }
     console.log(
-      `http://localhost:3030/places?type=${prefix.queryKey}&_page=${prefix.pageParam}`
+      `http://localhost:3000/places?type=${prefix.queryKey}&_page=${prefix.pageParam}`
     );
     return await currentConsumer<place[]>(
-      `http://localhost:3030/places?type=${prefix.queryKey}&_page=${prefix.pageParam}`
+      `http://localhost:3000/places?type=${prefix.queryKey}&_page=${prefix.pageParam}`
     );
   };
   // const nextPage = (

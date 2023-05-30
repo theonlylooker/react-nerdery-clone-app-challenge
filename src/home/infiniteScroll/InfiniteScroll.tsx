@@ -1,3 +1,9 @@
+/*TODO new approach
+filter and infinite scroll are different things
+ change the filter with state and the page params should be inside the
+ fetchnextpage 
+*/
+
 import React, { FC, useRef, useEffect, useState, useCallback } from "react";
 import { place } from "../card/type";
 import { Card, CardGridContainter } from "..";
@@ -46,18 +52,17 @@ const InfiniteScroll: FC<InfiniteScroll> = ({
     queryKey: string | null;
   }>({ pageParam: 1, queryKey: null });
   const types = searchParams.get("type");
-  const handleObserver = useCallback(
-    (entries: any, observer: any) => {
-      if (entries[0].isIntersecting) {
-        setPrefix((prevPrefix) => ({
-          ...prevPrefix,
-          pageParam: prevPrefix.pageParam + 1,
-        }));
-        fetchNextPage(prefix);
-      }
-    },
-    [prefix]
-  );
+  const handleObserver = (entries: any, observer: any) => {
+    if (entries[0].isIntersecting) {
+      console.log(prefix, "before");
+      setPrefix({
+        queryKey: "",
+        pageParam: 4,
+      });
+      console.log(prefix, "after");
+      fetchNextPage(prefix);
+    }
+  };
   const observer = useRef(new IntersectionObserver(handleObserver));
   // new IntersectionObserver((entries, observer) => {
   //   const first = entries[0];
