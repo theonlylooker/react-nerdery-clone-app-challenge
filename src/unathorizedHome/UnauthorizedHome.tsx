@@ -11,11 +11,12 @@ import { Footer } from "../shared";
 import { useState, useRef, useEffect } from "react";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
 import { StickyHeader, FixedBottomNav } from "./styles";
+import { ENDPOINT, PLACE } from "../shared/API";
 
 export const UnauthorizedHome = () => {
   const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
   const [page, setPage] = useState({ location: 1 });
-  const URL = "http://localhost:3030/places";
+  const URL = `${ENDPOINT}${PLACE}`;
   const { data, getNext, hasMore } = useInfiniteScroll(page);
   const observer = useRef(
     new IntersectionObserver((entries) => {
@@ -60,8 +61,8 @@ export const UnauthorizedHome = () => {
                   return index === data.length - 1 && hasMore ? (
                     <div ref={setLastElement} key={index}>
                       <Card
-                        key={place.placeId}
-                        placeId={place.placeId}
+                        key={place.id}
+                        id={place.id}
                         image={place.image}
                         ownerId={place.ownerId}
                         description={place.description}
@@ -75,8 +76,8 @@ export const UnauthorizedHome = () => {
                     </div>
                   ) : (
                     <Card
-                      key={place.placeId}
-                      placeId={place.placeId}
+                      key={place.id}
+                      id={place.id}
                       image={place.image}
                       ownerId={place.ownerId}
                       description={place.description}

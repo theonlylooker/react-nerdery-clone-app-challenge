@@ -12,12 +12,22 @@ import { useState, useRef, useEffect } from "react";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
 import { StickyHeader, FixedBottomNav } from "./styles";
 import WishListModal from "./wishListModal/WishListModal";
+import useModal from "../hooks/useModal";
+import { PlaceWithoutType } from "./type";
+import { ENDPOINT, PLACE } from "../shared/API";
 
 export const AuthorizedHome = () => {
   const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
   const [page, setPage] = useState({ location: 1 });
-  const URL = "http://localhost:3030/places";
+  const [currentPlace, setCurrentPlace] = useState<PlaceWithoutType | null>(
+    null
+  );
+  const { modal, handleModal } = useModal();
+  const URL = `${ENDPOINT}${PLACE}`;
   const { data, getNext, hasMore } = useInfiniteScroll(page);
+  const handleCurrent = (current: PlaceWithoutType) => {
+    setCurrentPlace(current);
+  };
   const observer = useRef(
     new IntersectionObserver((entries) => {
       const first = entries[0];
@@ -61,8 +71,8 @@ export const AuthorizedHome = () => {
                   return index === data.length - 1 && hasMore ? (
                     <div ref={setLastElement} key={index}>
                       <Card
-                        key={place.placeId}
-                        placeId={place.placeId}
+                        key={place.id}
+                        id={place.id}
                         image={place.image}
                         ownerId={place.ownerId}
                         description={place.description}
@@ -72,12 +82,14 @@ export const AuthorizedHome = () => {
                         rating={place.rating}
                         priceDay={place.priceDay}
                         wished={place.wished}
+                        handleModal={handleModal}
+                        handleCurrent={handleCurrent}
                       />
                     </div>
                   ) : (
                     <Card
-                      key={place.placeId}
-                      placeId={place.placeId}
+                      key={place.id}
+                      id={place.id}
                       image={place.image}
                       ownerId={place.ownerId}
                       description={place.description}
@@ -87,13 +99,19 @@ export const AuthorizedHome = () => {
                       rating={place.rating}
                       priceDay={place.priceDay}
                       wished={place.wished}
+                      handleModal={handleModal}
+                      handleCurrent={handleCurrent}
                     />
                   );
                 })}
             </CardGridContainter>
           </Content>
         </div>
-        <WishListModal />
+        <WishListModal
+          modal={modal}
+          handleModal={handleModal}
+          currentPlace={currentPlace}
+        />
         <Footer />
         <FixedBottomNav>
           <BottomNavbar />

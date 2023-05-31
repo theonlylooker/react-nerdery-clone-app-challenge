@@ -14,26 +14,11 @@ import { SignupForm, SignupInput } from "./shared/styles";
 import axios from "axios";
 import { UserContext } from "../context/Context";
 import { useNavigate } from "react-router-dom";
-interface register {
-  accessToken: string;
-  user: {
-    email: string;
-    id: string;
-    name?: string;
-    picture?: string;
-    reviews?: number;
-    country?: number;
-    type?: string;
-    birthday?: Date;
-    career?: string;
-    estudy?: string;
-    hobby?: string;
-    resume?: string;
-  };
-}
+import { register } from "./types";
+import { ENDPOINT, LOGIN, REGISTER, USERS } from "../shared/API";
 
 export const Signup = () => {
-  const initSignState = { email: "", password: "" };
+  const initSignState = { email: "", password: "", wishlists: [] };
   const [loginActive, setLoginActive] = useState(true);
   const [newUser, setnewUser] = useState(true);
   const [nextStep, setNextStep] = useState(false);
@@ -46,11 +31,9 @@ export const Signup = () => {
   };
   const handleRegister = async () => {
     try {
-      console.log(signUp);
-      const response = await axios.post<register>(
-        "http://localhost:3000/register",
-        signUp
-      );
+      const response = await axios.post<register>(`${ENDPOINT}${REGISTER}`, {
+        ...signUp,
+      });
       const data = response.data;
       localStorage.setItem("airbnbToken", data.accessToken);
       setLoginActive(!loginActive);
@@ -65,7 +48,7 @@ export const Signup = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/login", signUp);
+      const response = await axios.post(`${ENDPOINT}${LOGIN}`, signUp);
       const data = response.data;
       localStorage.setItem("airbnbToken", data.accessToken);
       setLoginActive(!loginActive);
@@ -84,11 +67,10 @@ export const Signup = () => {
     e.preventDefault();
     try {
       const response = await axios.get<[]>(
-        `http://localhost:3000/users?email=${signUp.email}`
+        `${ENDPOINT}${USERS}?email=${signUp.email}`
       );
       const data = response.data;
       if (data.length !== 0) {
-        console.log("entre", data);
         setnewUser(false);
       } else {
         setNextStep(true);

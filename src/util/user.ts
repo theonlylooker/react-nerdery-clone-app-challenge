@@ -1,37 +1,38 @@
 import { faker } from "@faker-js/faker";
 import fs from "fs";
+import { User } from "../shared/types/types";
+// type typeUser = "user" | "host";
 
-type typeUser = "user" | "host";
+// interface user {
+//   id: string;
+//   name: string;
+//   password: string;
+//   picture: string;
+//   reviews: number;
+//   email: string;
+//   country: number;
+//   type: typeUser;
+//   birthday: Date;
+//   career: string;
+//   estudy: string;
+//   hobby: string;
+//   resume: string;
+// }
 
-interface user {
-  id: string;
-  name: string;
-  password: string;
-  picture: string;
-  reviews: number;
-  email: string;
-  country: number;
-  type: typeUser;
-  birthday: Date;
-  career: string;
-  estudy: string;
-  hobby: string;
-  resume: string;
-}
-
-const createRandomUser = (): user => {
+const createRandomUser = (): User => {
   return {
     id: faker.string.uuid(),
+    wishlists: [],
     name: faker.person.fullName(),
     password: faker.internet.password(),
     picture: faker.image.avatar(),
     reviews: faker.number.int(),
     email: faker.internet.email(),
-    country: faker.number.int(),
+    country: faker.location.country(),
     type: faker.helpers.arrayElement(["user", "host"]),
     birthday: faker.date.past(),
     career: faker.person.jobTitle(),
-    estudy: faker.person.jobType(),
+    study: faker.person.jobType(),
     hobby: faker.lorem.words(),
     resume: faker.lorem.paragraph(),
   };

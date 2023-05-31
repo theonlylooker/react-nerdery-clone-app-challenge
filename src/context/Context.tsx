@@ -1,23 +1,10 @@
 import React, { FC, useState, createContext } from "react";
+import { UserCtxState } from "../shared/types/types";
 
-type userCtxState = {
-  email: string;
-  id: string;
-  name?: string;
-  picture?: string;
-  reviews?: number;
-  country?: number;
-  type?: string;
-  birthday?: Date;
-  career?: string;
-  estudy?: string;
-  hobby?: string;
-  resume?: string;
-};
-
-const user: userCtxState = {
+const user: UserCtxState = {
   email: "",
   id: "",
+  wishlists: [],
 };
 
 interface UserProvider {
@@ -27,13 +14,13 @@ interface UserProvider {
 const userDefaultValue = {
   user: user,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setUser: (state: userCtxState) => {},
+  setUser: (state: UserCtxState) => {},
 };
 
 export const UserContext = createContext(userDefaultValue);
 
 export const UserProvider: FC<UserProvider> = ({ children }) => {
-  const [user, setUser] = useState<userCtxState>(userDefaultValue.user);
+  const [user, setUser] = useState<UserCtxState>(userDefaultValue.user);
   return (
     <UserContext.Provider value={{ user, setUser }}>
       {children}

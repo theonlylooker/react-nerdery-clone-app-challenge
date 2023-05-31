@@ -1,39 +1,6 @@
-type Place = "cabins" | "department" | "caves" | "mini" | "dome" | "farm";
+import { PlaceWithoutType } from "../type";
 
-export interface place {
-  ownerId: string;
-  placeId: string;
-  type: Place;
-  image: string;
-  iconUser: string;
-  city: string;
-  country: string;
-  description: string;
-  priceDay: number;
-  wished: boolean;
-  rating: number;
-  //
-  //main features array objeto{ type:, text:  }
-  //type features array objeto{ type:, text:  }
-  /*
-   nombre
-   reseñas
-   calificacion
-   años anfitriando
-   array objetos information{
-   {
-    type: estudio
-    text: lo que estudio
-   },
-  }
-   */
-  /*
-  another feature{
-    {
-      type:
-      text:
-    }
-  }
-   */
+export interface Card extends Omit<PlaceWithoutType, "type"> {
+  handleModal: () => void;
+  handleCurrent: (current: PlaceWithoutType) => void;
 }
-export type Card = Omit<place, "type">;
