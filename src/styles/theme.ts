@@ -44,10 +44,12 @@ const fontSize = {
   xl: "18px",
   xxl: "22px",
   xxxl: "26px",
+  larger: "32px",
 };
 
 const weight = {
   light: "400",
+  base: "500",
   bold: "590",
 };
 
