@@ -1,7 +1,18 @@
+import { useContext } from "react";
 import { Heart, Search, Avatar, Airbnb } from "../../assets";
 import { BottomNavbarItem, BottomNavbarLayout } from "./styles.ts";
+import { UserContext } from "../../context/Context.tsx";
+import { WishlistContext } from "../../context/WishlistContext.tsx";
 
 export const BottomNavbar = () => {
+  const { setUser } = useContext(UserContext);
+  const { setWishlist } = useContext(WishlistContext);
+  const logout = () => {
+    localStorage.removeItem("airbnbToken");
+    localStorage.removeItem("airbnbUser");
+    setUser(null);
+    setWishlist([]);
+  };
   return (
     <BottomNavbarLayout>
       <BottomNavbarItem to={"/"}>
@@ -13,8 +24,8 @@ export const BottomNavbar = () => {
       <BottomNavbarItem to={"/"}>
         <Airbnb /> Trips
       </BottomNavbarItem>
-      <BottomNavbarItem to={"/"}>
-        <Avatar /> Signout
+      <BottomNavbarItem onClick={logout} to={"/"}>
+        <Avatar /> Logout
       </BottomNavbarItem>
     </BottomNavbarLayout>
   );

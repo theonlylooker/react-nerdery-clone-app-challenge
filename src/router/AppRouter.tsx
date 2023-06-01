@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/wishlist/:id",
-    element: <WishlistDetail />,
+    element: <>asd</>, //<WishlistDetail />,
   },
   {
     path: "/login",

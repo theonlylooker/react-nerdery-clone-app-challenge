@@ -36,6 +36,7 @@ export const Signup = () => {
       });
       const data = response.data;
       localStorage.setItem("airbnbToken", data.accessToken);
+      localStorage.setItem("airbnbUser", JSON.stringify(data.user));
       setLoginActive(!loginActive);
       globalUser.setUser(data.user);
       setSignUp(initSignState);
@@ -51,6 +52,7 @@ export const Signup = () => {
       const response = await axios.post(`${ENDPOINT}${LOGIN}`, signUp);
       const data = response.data;
       localStorage.setItem("airbnbToken", data.accessToken);
+      localStorage.setItem("airbnbUser", JSON.stringify(data.user));
       setLoginActive(!loginActive);
       globalUser.setUser(data.user);
       setSignUp(initSignState);
