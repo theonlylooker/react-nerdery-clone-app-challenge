@@ -19,6 +19,7 @@ export const Wishlist = () => {
   return (
     <WishlistLayout>
       <WishlistH1>Wishlists</WishlistH1>
+
       {wishlist.length ? <Wishlists /> : <Empty />}
     </WishlistLayout>
   );

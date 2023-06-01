@@ -53,76 +53,39 @@ export const Card: FC<cardProps> = ({
       rating,
       wished,
     });
-    if (user.wishlists.length === 0) {
-      handleModal();
-    } else {
-      try {
-        console.log("entre aca", {
-          list: [
-            ...wishlist,
+    if (user) {
+      if (user.wishlists.length === 0) {
+        handleModal();
+      } else {
+        try {
+          const response = await axios.patch(
+            `${ENDPOINT}${WISHLIST}/${user.wishlists[0]}`,
             {
-              city,
-              country,
-              description,
-              image,
-              iconUser,
-              ownerId,
-              id,
-              priceDay,
-              rating,
-              wished,
-            },
-          ],
-        });
-        const response = await axios.patch(
-          `${ENDPOINT}${WISHLIST}/${user.wishlists[0]}`,
-          {
-            list: [
-              ...wishlist,
-              {
-                city,
-                country,
-                description,
-                image,
-                iconUser,
-                ownerId,
-                id,
-                priceDay,
-                rating,
-                wished,
-              },
-            ],
-          }
-        );
-        const data = await response.data;
-        console.log(data);
-        setWishlist([...wishlist, data]);
-      } catch (error) {
-        console.log("error en card");
+              list: [
+                ...wishlist[0].list,
+                {
+                  city,
+                  country,
+                  description,
+                  image,
+                  iconUser,
+                  ownerId,
+                  id,
+                  priceDay,
+                  rating,
+                  wished,
+                },
+              ],
+            }
+          );
+          const data = await response.data;
+          console.log(data);
+          setWishlist([...wishlist, data]);
+        } catch (error) {
+          console.log("error en card");
+        }
       }
-      // try {
-      //   const response = axios.patch(
-      //     `http://localhost:3000/wishlists/${user.wishlists[0]}`,{}
-      //   );
-      // } catch (error) {
-      //   console.log("error");
-      // }
     }
-    // } else {
-    //   try {
-    //     //user.wishLists[0].list = [...user.wishLists[0].list,]
-    //     //user.wishLists[0].list.push({});
-    //     // { id: String(Date.now()), list: [] }
-    //     // const response = await axios.patch(
-    //     //   `http://localhost:3000/users/${user.id}`,
-    //     //   {
-    //     //     wishLists: [...user.wishLists],
-    //     //   }
-    //     // );
-    //   } catch (error) {
-    //     console.log("error");
-    //   }
-    // }
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UnauthorizedHome } from "../unathorizedHome";
 import { AuthorizedHome } from "../authorizedHome/";
 import { UserContext } from "./Context";
@@ -11,6 +11,7 @@ const ProtectedRoute = () => {
   const { setWishlist } = useContext(WishlistContext);
   const tokenString = localStorage.getItem("airbnbToken");
   const userString = localStorage.getItem("airbnbUser");
+
   const getWishslists = async (userId: string) => {
     try {
       const response = await axios.get(
@@ -19,21 +20,18 @@ const ProtectedRoute = () => {
       const data = await response.data;
       setWishlist(data);
     } catch (error) {
-      console.log("error");
+      console.log("error global");
     }
-    // for (const id in userLists) {
-    //   try {
-    //     const response = await axios.get(`${ENDPOINT}${WISHLIST}/${id}`);
-    //     const data = await response.data;
-    //     setWishlist([...wishlist, data]);
-    //   } catch (error) {
-    //     console.log("error");
-    //   }
-    // }
   };
+
+  useEffect(() => {
+    if (userString) {
+      setUser(JSON.parse(userString));
+      getWishslists(JSON.parse(userString).id);
+    }
+  }, []);
+
   if (userString) {
-    setUser(JSON.parse(userString));
-    if (user) getWishslists(user.id);
     return <AuthorizedHome />;
   }
   return <UnauthorizedHome />;
