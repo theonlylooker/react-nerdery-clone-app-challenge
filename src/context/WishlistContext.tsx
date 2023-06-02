@@ -78,7 +78,9 @@ export const useWishlistContext = (): {
   useEffect(() => {
     wishlist.forEach((wishlist) => {
       wishlist.list.forEach((place) => {
-        setAllElements([...allElements, place.id]);
+        if (!allElements.includes(place.id)) {
+          setAllElements([...allElements, place.id]);
+        }
       });
     });
   }, [wishlist]);

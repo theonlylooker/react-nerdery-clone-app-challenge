@@ -1,4 +1,4 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { Star } from "../../assets";
 import { useNavigate } from "react-router-dom";
 import {
@@ -33,13 +33,19 @@ export const Card: FC<cardProps> = ({
   rating,
   description,
   priceDay,
-  wished,
   handleCurrent,
 }) => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
+  const { addWishlistElement, deleteWishlistElement, allElements } =
+    useWishlistContext();
+  const [wished, setWished] = useState(false);
   //const { wishlist, setWishlist } = useContext(WishlistContext);
-  const { addWishlistElement, deleteWishlistElement } = useWishlistContext();
+
+  useEffect(() => {
+    setWished(allElements.includes(id));
+  }, [allElements]);
+
   const navigateTo = () => {
     navigate(`/place/${id}`);
   };
@@ -60,6 +66,7 @@ export const Card: FC<cardProps> = ({
       wished,
     });
     if (wished) {
+      setWished(!wished);
       deleteWishlistElement({
         city,
         country,
@@ -73,6 +80,7 @@ export const Card: FC<cardProps> = ({
         wished,
       });
     } else {
+      setWished(!wished);
       if (user) {
         if (user.wishlists.length === 0) {
           handleModal();
