@@ -22,21 +22,21 @@ export const WishlistDetail = () => {
   const { wishlist } = useContext(WishlistContext);
   const currentWishlist = wishlist.find((current) => current.id === id);
   console.log(currentWishlist);
+  const dampFunction = () => {
+    return;
+  };
   return (
     <WishlistDetaiLayout>
       <WishlistDetailH1>{currentWishlist?.name}</WishlistDetailH1>
       <CardGridContainter>
         {currentWishlist?.list.map((place) => (
           <Card
-            handleCurrent={() => {}}
-            handleModal={() => {}}
+            handleCurrent={dampFunction}
+            handleModal={dampFunction}
             key={place.id}
             ownerId={place.ownerId}
             priceDay={place.priceDay}
             rating={place.rating}
-            wished={Boolean(
-              currentWishlist.list.find((element) => element.id === place.id)
-            )}
             image={place.image}
             city={place.city}
             country={place.country}
