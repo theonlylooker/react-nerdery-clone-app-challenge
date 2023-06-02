@@ -1,5 +1,13 @@
-import React, { FC, useState, createContext } from "react";
+import React, {
+  FC,
+  useState,
+  createContext,
+  useContext,
+  useEffect,
+} from "react";
 import { UserCtxState } from "../shared/types/types";
+import { ENDPOINT, USERS } from "../shared/API";
+import axios from "axios";
 
 const user: UserCtxState = {
   email: "",
@@ -29,4 +37,31 @@ export const UserProvider: FC<UserProvider> = ({ children }) => {
       {children}
     </UserContext.Provider>
   );
+};
+
+export const useUserContext = (): { addWishlist: (id: string) => void } => {
+  const { user, setUser } = useContext(UserContext);
+
+  const addWishlist = async (id: string) => {
+    if (user) {
+      try {
+        const response = await axios.patch(`${ENDPOINT}${USERS}/${user.id}`, {
+          wishlists: [...user.wishlists, id],
+        });
+        setUser({
+          ...user,
+          wishlists: [...user.wishlists, id],
+        });
+      } catch (error) {
+        console.log("error");
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("airbnbUser", JSON.stringify(user));
+    }
+  }, [user]);
+  return { addWishlist };
 };

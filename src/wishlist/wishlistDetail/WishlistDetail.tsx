@@ -5,10 +5,10 @@ import { WishlistContext } from "../../context/WishlistContext";
 import { Card, CardGridContainter } from "../../authorizedHome";
 import styled from "styled-components";
 
-interface WishlistDetail {
-  name: string;
-  list: PlaceWithoutType[];
-}
+// interface WishlistDetail {
+//   name: string;
+//   list: PlaceWithoutType[];
+// }
 
 const WishlistDetaiLayout = styled.div`
   padding: 36px 24px;
@@ -20,26 +20,29 @@ const WishlistDetailH1 = styled.h1`
 export const WishlistDetail = () => {
   const { id } = useParams();
   const { wishlist } = useContext(WishlistContext);
-  const current = wishlist.find((current) => current.id === id);
+  const currentWishlist = wishlist.find((current) => current.id === id);
+  console.log(currentWishlist);
   return (
     <WishlistDetaiLayout>
-      <WishlistDetailH1>{current?.name}</WishlistDetailH1>
+      <WishlistDetailH1>{currentWishlist?.name}</WishlistDetailH1>
       <CardGridContainter>
-        {current?.list.map((item) => (
+        {currentWishlist?.list.map((place) => (
           <Card
             handleCurrent={() => {}}
             handleModal={() => {}}
-            key={item.id}
-            ownerId={item.ownerId}
-            priceDay={item.priceDay}
-            rating={item.rating}
-            wished={item.wished}
-            image={item.image}
-            city={item.city}
-            country={item.country}
-            description={item.description}
-            iconUser={item.iconUser}
-            id={item.id}
+            key={place.id}
+            ownerId={place.ownerId}
+            priceDay={place.priceDay}
+            rating={place.rating}
+            wished={Boolean(
+              currentWishlist.list.find((element) => element.id === place.id)
+            )}
+            image={place.image}
+            city={place.city}
+            country={place.country}
+            description={place.description}
+            iconUser={place.iconUser}
+            id={place.id}
           ></Card>
         ))}
       </CardGridContainter>

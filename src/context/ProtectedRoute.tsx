@@ -6,6 +6,8 @@ import { WishlistContext } from "./WishlistContext";
 import axios from "axios";
 import { ENDPOINT, WISHLIST } from "../shared/API";
 
+/*TODO: logout user after reload page because its a security breach to save the user on the localstorage */
+
 const ProtectedRoute = () => {
   const { user, setUser } = useContext(UserContext);
   const { setWishlist } = useContext(WishlistContext);

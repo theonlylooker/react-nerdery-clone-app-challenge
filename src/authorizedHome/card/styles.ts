@@ -15,10 +15,11 @@ export const CardImage = styled.img<{ src: string }>`
   border-radius: 12px;
   content: url(${({ src }) => `${src}`});
 `;
-export const CardHeart = styled(Heart)`
+export const CardHeart = styled(Heart)<{ wished: boolean }>`
   position: absolute;
   top: 18px;
   right: 18px;
+  fill: ${({ wished }) => `${wished ? "red" : ""}`};
 `;
 
 export const CardContent = styled.div`

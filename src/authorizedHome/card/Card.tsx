@@ -14,8 +14,13 @@ import {
 import { Card as cardProps } from "./type";
 import { UserContext } from "../../context/Context";
 import axios from "axios";
-import { WishlistContext } from "../../context/WishlistContext";
+import {
+  WishlistContext,
+  useWishlistContext,
+} from "../../context/WishlistContext";
 import { ENDPOINT, WISHLIST } from "../../shared/API";
+import { PlaceWithoutType } from "../type";
+import { Wishlist } from "../../shared/types/types";
 
 export const Card: FC<cardProps> = ({
   handleModal,
@@ -33,11 +38,12 @@ export const Card: FC<cardProps> = ({
 }) => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
-  const { wishlist, setWishlist } = useContext(WishlistContext);
+  //const { wishlist, setWishlist } = useContext(WishlistContext);
+  const { addWishlistElement, deleteWishlistElement } = useWishlistContext();
   const navigateTo = () => {
     navigate(`/place/${id}`);
   };
-  const addWishList = async (
+  const handleWishList = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.stopPropagation();
@@ -53,36 +59,36 @@ export const Card: FC<cardProps> = ({
       rating,
       wished,
     });
-    if (user) {
-      if (user.wishlists.length === 0) {
-        handleModal();
-      } else {
-        try {
-          const response = await axios.patch(
-            `${ENDPOINT}${WISHLIST}/${user.wishlists[0]}`,
-            {
-              list: [
-                ...wishlist[0].list,
-                {
-                  city,
-                  country,
-                  description,
-                  image,
-                  iconUser,
-                  ownerId,
-                  id,
-                  priceDay,
-                  rating,
-                  wished,
-                },
-              ],
-            }
-          );
-          const data = await response.data;
-          console.log(data);
-          setWishlist([...wishlist, data]);
-        } catch (error) {
-          console.log("error en card");
+    if (wished) {
+      deleteWishlistElement({
+        city,
+        country,
+        description,
+        image,
+        iconUser,
+        ownerId,
+        id,
+        priceDay,
+        rating,
+        wished,
+      });
+    } else {
+      if (user) {
+        if (user.wishlists.length === 0) {
+          handleModal();
+        } else {
+          addWishlistElement({
+            city,
+            country,
+            description,
+            image,
+            iconUser,
+            ownerId,
+            id,
+            priceDay,
+            rating,
+            wished,
+          });
         }
       }
     }
@@ -92,7 +98,7 @@ export const Card: FC<cardProps> = ({
     <CardContainer onClick={navigateTo}>
       <div className="image">
         <CardImage src={image} />
-        <CardHeart onClick={addWishList} />
+        <CardHeart wished={wished} onClick={handleWishList} />
       </div>
       <CardContent>
         <CardInfo>

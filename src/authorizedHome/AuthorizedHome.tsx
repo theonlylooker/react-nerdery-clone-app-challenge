@@ -15,9 +15,11 @@ import WishListModal from "./wishListModal/WishListModal";
 import useModal from "../hooks/useModal";
 import { PlaceWithoutType } from "./type";
 import { ENDPOINT, PLACE } from "../shared/API";
+import { useWishlistContext } from "../context/WishlistContext";
 
 export const AuthorizedHome = () => {
   const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
+  const { allElements } = useWishlistContext();
   const [page, setPage] = useState({ location: 1 });
   const [currentPlace, setCurrentPlace] = useState<PlaceWithoutType | null>(
     null
@@ -81,7 +83,7 @@ export const AuthorizedHome = () => {
                         city={place.city}
                         rating={place.rating}
                         priceDay={place.priceDay}
-                        wished={place.wished}
+                        wished={allElements.includes(place.id)}
                         handleModal={handleModal}
                         handleCurrent={handleCurrent}
                       />
@@ -98,7 +100,7 @@ export const AuthorizedHome = () => {
                       city={place.city}
                       rating={place.rating}
                       priceDay={place.priceDay}
-                      wished={place.wished}
+                      wished={allElements.includes(place.id)}
                       handleModal={handleModal}
                       handleCurrent={handleCurrent}
                     />
