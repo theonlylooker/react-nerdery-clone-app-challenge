@@ -3,11 +3,12 @@ import { PlaceDetails } from "../pageDetails";
 import { Signup } from "../signup&login";
 import { Wishlist, WishlistDetail } from "../wishlist";
 import ProtectedRoute from "../context/ProtectedRoute";
+import { AuthorizedHome } from "../authorizedHome";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ProtectedRoute />,
+    element: <AuthorizedHome />,
   },
   {
     path: "/wishlist",

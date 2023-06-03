@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { UnauthorizedHome } from "../unathorizedHome";
+//import { UnauthorizedHome } from "../unathorizedHome";
 import { AuthorizedHome } from "../authorizedHome/";
 import { UserContext } from "./Context";
 import { WishlistContext } from "./WishlistContext";
@@ -36,7 +36,7 @@ const ProtectedRoute = () => {
   if (userString) {
     return <AuthorizedHome />;
   }
-  return <UnauthorizedHome />;
+  //return <UnauthorizedHome />;
 };
 
 export default ProtectedRoute;

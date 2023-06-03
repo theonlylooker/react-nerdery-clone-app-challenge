@@ -15,7 +15,7 @@ import { UserContext, useUserContext } from "../../context/Context";
 import { Wishlist } from "../../shared/types/types";
 import { Modal as ModalProps, WishlistResponse } from "./type";
 import { WishlistContext } from "../../context/WishlistContext";
-import { ENDPOINT, USERS, WISHLIST } from "../../shared/API";
+import { ENDPOINT, WISHLIST } from "../../shared/API";
 const WishListModal: FC<ModalProps> = ({
   modal,
   handleModal,
@@ -59,18 +59,6 @@ const WishListModal: FC<ModalProps> = ({
           ]);
           handleModal();
         }
-        // const response = await axios.patch(
-        //   `http://localhost:3000/users/${user.id}`,
-        //   {
-        //     wishLists: [{ ...wishlist, id, list: [currentPlace] }],
-        //   }
-        // );
-        // const data = await response.data;
-        // setUser({
-        //   ...user,
-        //   wishLists: [{ ...wishlist, id, list: [currentPlace] }],
-        // });
-        //console.log(data);
       }
     } catch (error) {
       console.log("error to add wishlist");

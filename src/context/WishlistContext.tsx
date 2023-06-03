@@ -24,6 +24,20 @@ interface WishlistProvider {
 
 export const WishlistProvider: FC<WishlistProvider> = ({ children }) => {
   const [wishlist, setWishlist] = useState(wishlistDefaultValue.wishlist);
+  const { user } = useContext(UserContext);
+
+  const getWishlists = async () => {
+    const response = await axios.get<WishlistCtx>(
+      `${ENDPOINT}${WISHLIST}?userId=${user?.id}`
+    );
+    const data = response.data;
+    setWishlist(data);
+  };
+
+  useEffect(() => {
+    getWishlists();
+  }, []);
+
   return (
     <WishlistContext.Provider value={{ wishlist, setWishlist }}>
       {children}

@@ -6,20 +6,24 @@ import React, {
   useEffect,
 } from "react";
 import { UserCtxState } from "../shared/types/types";
-import { ENDPOINT, USERS } from "../shared/API";
+import { ENDPOINT, USERS, WISHLIST } from "../shared/API";
 import axios from "axios";
-
+import { WishlistContext } from "./WishlistContext";
 const user: UserCtxState = {
   email: "",
   id: "",
   wishlists: [],
 };
 
+const user1: UserCtxState = localStorage.getItem("airbnbUser")
+  ? JSON.parse(localStorage.getItem("airbnbUser") as string)
+  : null;
+
 const userDefaultValue: {
   user: UserCtxState | null;
   setUser: (state: UserCtxState | null) => void;
 } = {
-  user: user,
+  user: user1,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   setUser: (state: UserCtxState | null) => {},
 };
@@ -39,7 +43,9 @@ export const UserProvider: FC<UserProvider> = ({ children }) => {
   );
 };
 
-export const useUserContext = (): { addWishlist: (id: string) => void } => {
+export const useUserContext = (): {
+  addWishlist: (id: string) => void;
+} => {
   const { user, setUser } = useContext(UserContext);
 
   const addWishlist = async (id: string) => {
@@ -57,11 +63,11 @@ export const useUserContext = (): { addWishlist: (id: string) => void } => {
       }
     }
   };
-
   useEffect(() => {
     if (user) {
       localStorage.setItem("airbnbUser", JSON.stringify(user));
     }
   }, [user]);
+
   return { addWishlist };
 };
