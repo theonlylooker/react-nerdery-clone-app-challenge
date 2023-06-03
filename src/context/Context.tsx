@@ -9,6 +9,8 @@ import { UserCtxState } from "../shared/types/types";
 import { ENDPOINT, USERS, WISHLIST } from "../shared/API";
 import axios from "axios";
 import { WishlistContext } from "./WishlistContext";
+import useAsync from "../hooks/useAsync";
+import { updateUserWishlists } from "../AXIOS/functions";
 const user: UserCtxState = {
   email: "",
   id: "",
@@ -54,6 +56,7 @@ export const useUserContext = (): {
         const response = await axios.patch(`${ENDPOINT}${USERS}/${user.id}`, {
           wishlists: [...user.wishlists, id],
         });
+        //useAsync(updateUserWishlists)
         setUser({
           ...user,
           wishlists: [...user.wishlists, id],

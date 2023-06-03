@@ -16,6 +16,8 @@ import { Wishlist } from "../../shared/types/types";
 import { Modal as ModalProps, WishlistResponse } from "./type";
 import { WishlistContext } from "../../context/WishlistContext";
 import { ENDPOINT, WISHLIST } from "../../shared/API";
+import useAsync from "../../hooks/useAsync";
+import { createWishlist } from "../../AXIOS/functions";
 const WishListModal: FC<ModalProps> = ({
   modal,
   handleModal,
@@ -51,6 +53,7 @@ const WishListModal: FC<ModalProps> = ({
             }
           );
           const data = await response.data;
+          //useAsync(createWishlist)
           console.log("im here");
           addWishlist(data.id);
           setWishlistGlobal([

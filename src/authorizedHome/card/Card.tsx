@@ -13,14 +13,7 @@ import {
 } from "./styles";
 import { Card as cardProps } from "./type";
 import { UserContext } from "../../context/Context";
-import axios from "axios";
-import {
-  WishlistContext,
-  useWishlistContext,
-} from "../../context/WishlistContext";
-import { ENDPOINT, WISHLIST } from "../../shared/API";
-import { PlaceWithoutType } from "../type";
-import { Wishlist } from "../../shared/types/types";
+import { useWishlistContext } from "../../context/WishlistContext";
 
 export const Card: FC<cardProps> = ({
   handleModal,
@@ -53,6 +46,10 @@ export const Card: FC<cardProps> = ({
     e: React.MouseEvent<SVGSVGElement, MouseEvent>
   ) => {
     e.stopPropagation();
+    if (!user) {
+      navigate(`/login`);
+      return;
+    }
     handleCurrent({
       city,
       country,

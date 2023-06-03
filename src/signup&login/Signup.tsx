@@ -16,6 +16,8 @@ import { UserContext } from "../context/Context";
 import { useNavigate } from "react-router-dom";
 import { register } from "./types";
 import { ENDPOINT, LOGIN, REGISTER, USERS } from "../shared/API";
+import useAsync from "../hooks/useAsync";
+import { emailExists, login, registerUser } from "../AXIOS/functions";
 
 export const Signup = () => {
   const initSignState = { email: "", password: "", wishlists: [] };
@@ -35,6 +37,7 @@ export const Signup = () => {
         ...signUp,
       });
       const data = response.data;
+      //useAsync(registerUser)
       localStorage.setItem("airbnbToken", data.accessToken);
       localStorage.setItem("airbnbUser", JSON.stringify(data.user));
       setLoginActive(!loginActive);
@@ -51,6 +54,7 @@ export const Signup = () => {
     try {
       const response = await axios.post(`${ENDPOINT}${LOGIN}`, signUp);
       const data = response.data;
+      //useAsync(login);
       localStorage.setItem("airbnbToken", data.accessToken);
       localStorage.setItem("airbnbUser", JSON.stringify(data.user));
       setLoginActive(!loginActive);
@@ -72,6 +76,7 @@ export const Signup = () => {
         `${ENDPOINT}${USERS}?email=${signUp.email}`
       );
       const data = response.data;
+      //useAsync(emailExists)
       if (data.length !== 0) {
         setnewUser(false);
       } else {

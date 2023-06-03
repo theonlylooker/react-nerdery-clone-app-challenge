@@ -4,10 +4,16 @@ import { Wishlist } from "../shared/types/types";
 import { ENDPOINT, WISHLIST } from "../shared/API";
 import axios from "axios";
 import { UserContext } from "./Context";
+import useAsync from "../hooks/useAsync";
+import {
+  createWishlistElement,
+  fetchWishlists,
+  deleteWishlistElement as deleteitem,
+} from "../AXIOS/functions";
 
 export type WishlistItem = Omit<Wishlist, "userId">;
 
-type WishlistCtx = WishlistItem[];
+export type WishlistCtx = WishlistItem[];
 
 const initialWishlistState: WishlistCtx = [];
 
@@ -31,6 +37,7 @@ export const WishlistProvider: FC<WishlistProvider> = ({ children }) => {
       `${ENDPOINT}${WISHLIST}?userId=${user?.id}`
     );
     const data = response.data;
+    //useAsync(fetchWishlists)
     setWishlist(data);
   };
 
@@ -64,6 +71,7 @@ export const useWishlistContext = (): {
           }
         );
         const data = await response.data;
+        //useAsync(createWishlistElement)
         const newWishlist = [...wishlist];
         newWishlist[0].list = data.list;
         setWishlist(newWishlist);
@@ -80,6 +88,7 @@ export const useWishlistContext = (): {
           { list: wishlist[0].list.filter((place) => place.id !== current.id) }
         );
         const data = await response.data;
+        //useAsync(deleteitem)
         const newWishlist = [...wishlist];
         newWishlist[0].list = data.list;
         setWishlist(newWishlist);
