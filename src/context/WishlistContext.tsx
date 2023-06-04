@@ -1,14 +1,12 @@
 import { createContext, useState, useEffect, FC, useContext } from "react";
 import { PlaceWithoutType } from "../authorizedHome/type";
 import { Wishlist } from "../shared/types/types";
-import { ENDPOINT, WISHLIST } from "../shared/API";
-import axios from "axios";
-import { UserContext } from "./Context";
-import useAsync from "../hooks/useAsync";
+import { UserContext, useUserContext } from "./Context";
 import {
   createWishlistElement,
   fetchWishlists,
   deleteWishlistElement as deleteitem,
+  createWishlist,
 } from "../AXIOS/functions";
 
 export type WishlistItem = Omit<Wishlist, "userId">;
@@ -33,12 +31,10 @@ export const WishlistProvider: FC<WishlistProvider> = ({ children }) => {
   const { user } = useContext(UserContext);
 
   const getWishlists = async () => {
-    const response = await axios.get<WishlistCtx>(
-      `${ENDPOINT}${WISHLIST}?userId=${user?.id}`
-    );
-    const data = response.data;
-    //useAsync(fetchWishlists)
-    setWishlist(data);
+    if (user) {
+      const response = await fetchWishlists(user.id);
+      setWishlist(response.data);
+    }
   };
 
   useEffect(() => {
@@ -56,22 +52,44 @@ export const useWishlistContext = (): {
   allElements: string[];
   addWishlistElement: (current: PlaceWithoutType) => void;
   deleteWishlistElement: (current: PlaceWithoutType) => void;
+  addWishlist: (
+    id: string,
+    newWishlist: Wishlist,
+    userId: string,
+    newPlace: PlaceWithoutType
+  ) => void;
 } => {
   const [allElements, setAllElements] = useState<string[]>([]);
   const { wishlist, setWishlist } = useContext(WishlistContext);
   const { user } = useContext(UserContext);
+  const { addWishlist: addUserWishlist } = useUserContext();
+
+  const addWishlist = async (
+    id: string,
+    newWishlist: Wishlist,
+    userId: string,
+    newPlace: PlaceWithoutType
+  ) => {
+    const response = await createWishlist({
+      ...newWishlist,
+      id,
+      userId,
+      list: [...newWishlist.list, newPlace],
+    });
+    const data = response.data;
+    addUserWishlist(data.id);
+    setWishlist([...wishlist, { id, list: data.list, name: data.name }]);
+  };
 
   const addWishlistElement = async (current: PlaceWithoutType) => {
     if (user) {
       try {
-        const response = await axios.patch<Wishlist>(
-          `${ENDPOINT}${WISHLIST}/${user.wishlists[0]}`,
-          {
-            list: [...wishlist[0].list, current],
-          }
+        const response = await createWishlistElement(
+          user.wishlists[0],
+          wishlist[0].list,
+          current
         );
-        const data = await response.data;
-        //useAsync(createWishlistElement)
+        const data = response.data;
         const newWishlist = [...wishlist];
         newWishlist[0].list = data.list;
         setWishlist(newWishlist);
@@ -83,12 +101,12 @@ export const useWishlistContext = (): {
   const deleteWishlistElement = async (current: PlaceWithoutType) => {
     if (user) {
       try {
-        const response = await axios.patch(
-          `${ENDPOINT}${WISHLIST}/${user.wishlists[0]}`,
-          { list: wishlist[0].list.filter((place) => place.id !== current.id) }
+        const response = await deleteitem(
+          user.wishlists[0],
+          current.id,
+          wishlist[0].list
         );
-        const data = await response.data;
-        //useAsync(deleteitem)
+        const data = response.data;
         const newWishlist = [...wishlist];
         newWishlist[0].list = data.list;
         setWishlist(newWishlist);
@@ -108,5 +126,10 @@ export const useWishlistContext = (): {
     });
   }, [wishlist]);
 
-  return { allElements, addWishlistElement, deleteWishlistElement };
+  return {
+    allElements,
+    addWishlistElement,
+    deleteWishlistElement,
+    addWishlist,
+  };
 };

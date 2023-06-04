@@ -28,8 +28,6 @@ const useAsync = <T, A>(
     resync();
   }, []);
 
-  //const resync = () => {};
-
   return { data, error, loading, resync };
 };
 

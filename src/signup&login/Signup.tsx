@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Phone, Email } from ".";
 import {
   SignupVerificationSpan,
@@ -12,20 +12,16 @@ import {
 } from "./styles";
 import { SignupForm, SignupInput } from "./shared/styles";
 import axios from "axios";
-import { UserContext } from "../context/Context";
+import { useUserContext } from "../context/Context";
 import { useNavigate } from "react-router-dom";
-import { register } from "./types";
-import { ENDPOINT, LOGIN, REGISTER, USERS } from "../shared/API";
-import useAsync from "../hooks/useAsync";
-import { emailExists, login, registerUser } from "../AXIOS/functions";
-
+import { ENDPOINT, USERS } from "../shared/API";
 export const Signup = () => {
   const initSignState = { email: "", password: "", wishlists: [] };
   const [loginActive, setLoginActive] = useState(true);
   const [newUser, setnewUser] = useState(true);
   const [nextStep, setNextStep] = useState(false);
   const [signUp, setSignUp] = useState(initSignState);
-  const globalUser = useContext(UserContext);
+  const { login, register } = useUserContext();
   const navigate = useNavigate();
 
   const handleAction = () => {
@@ -33,15 +29,8 @@ export const Signup = () => {
   };
   const handleRegister = async () => {
     try {
-      const response = await axios.post<register>(`${ENDPOINT}${REGISTER}`, {
-        ...signUp,
-      });
-      const data = response.data;
-      //useAsync(registerUser)
-      localStorage.setItem("airbnbToken", data.accessToken);
-      localStorage.setItem("airbnbUser", JSON.stringify(data.user));
+      register(signUp);
       setLoginActive(!loginActive);
-      globalUser.setUser(data.user);
       setSignUp(initSignState);
       navigate("/");
     } catch (error) {
@@ -52,13 +41,8 @@ export const Signup = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${ENDPOINT}${LOGIN}`, signUp);
-      const data = response.data;
-      //useAsync(login);
-      localStorage.setItem("airbnbToken", data.accessToken);
-      localStorage.setItem("airbnbUser", JSON.stringify(data.user));
+      login(signUp);
       setLoginActive(!loginActive);
-      globalUser.setUser(data.user);
       setSignUp(initSignState);
       navigate("/");
     } catch (error) {
@@ -76,7 +60,6 @@ export const Signup = () => {
         `${ENDPOINT}${USERS}?email=${signUp.email}`
       );
       const data = response.data;
-      //useAsync(emailExists)
       if (data.length !== 0) {
         setnewUser(false);
       } else {

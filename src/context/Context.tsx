@@ -6,11 +6,11 @@ import React, {
   useEffect,
 } from "react";
 import { UserCtxState } from "../shared/types/types";
-import { ENDPOINT, USERS, WISHLIST } from "../shared/API";
-import axios from "axios";
-import { WishlistContext } from "./WishlistContext";
-import useAsync from "../hooks/useAsync";
-import { updateUserWishlists } from "../AXIOS/functions";
+import {
+  loginUser,
+  registerUser,
+  updateUserWishlists,
+} from "../AXIOS/functions";
 const user: UserCtxState = {
   email: "",
   id: "",
@@ -47,20 +47,48 @@ export const UserProvider: FC<UserProvider> = ({ children }) => {
 
 export const useUserContext = (): {
   addWishlist: (id: string) => void;
+  register: (signUp: {
+    email: string;
+    password: string;
+    wishlists: string[];
+  }) => void;
+  login: (signUp: {
+    email: string;
+    password: string;
+    wishlists: string[];
+  }) => void;
 } => {
   const { user, setUser } = useContext(UserContext);
+
+  const login = async (signUp: {
+    email: string;
+    password: string;
+    wishlists: string[];
+  }) => {
+    const response = await loginUser(signUp);
+    const data = response.data;
+    localStorage.setItem("airbnbToken", data.accessToken);
+    localStorage.setItem("airbnbUser", JSON.stringify(data.user));
+    setUser(data.user);
+  };
+  const register = async (signUp: {
+    email: string;
+    password: string;
+    wishlists: string[];
+  }) => {
+    const response = await registerUser(signUp);
+    const data = response.data;
+    localStorage.setItem("airbnbToken", data.accessToken);
+    localStorage.setItem("airbnbUser", JSON.stringify(data.user));
+    setUser(data.user);
+  };
 
   const addWishlist = async (id: string) => {
     if (user) {
       try {
-        const response = await axios.patch(`${ENDPOINT}${USERS}/${user.id}`, {
-          wishlists: [...user.wishlists, id],
-        });
-        //useAsync(updateUserWishlists)
-        setUser({
-          ...user,
-          wishlists: [...user.wishlists, id],
-        });
+        const response = await updateUserWishlists(id, user.id, user.wishlists);
+        const data = response.data;
+        setUser(data);
       } catch (error) {
         console.log("error");
       }
@@ -72,5 +100,5 @@ export const useUserContext = (): {
     }
   }, [user]);
 
-  return { addWishlist };
+  return { addWishlist, login, register };
 };

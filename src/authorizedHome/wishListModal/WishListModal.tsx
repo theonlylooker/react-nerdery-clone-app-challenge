@@ -10,23 +10,17 @@ import {
   ModalAction,
   ModalButton,
 } from "./styles";
-import axios from "axios";
-import { UserContext, useUserContext } from "../../context/Context";
+import { UserContext } from "../../context/Context";
 import { Wishlist } from "../../shared/types/types";
-import { Modal as ModalProps, WishlistResponse } from "./type";
-import { WishlistContext } from "../../context/WishlistContext";
-import { ENDPOINT, WISHLIST } from "../../shared/API";
-import useAsync from "../../hooks/useAsync";
-import { createWishlist } from "../../AXIOS/functions";
+import { Modal as ModalProps } from "./type";
+import { useWishlistContext } from "../../context/WishlistContext";
 const WishListModal: FC<ModalProps> = ({
   modal,
   handleModal,
   currentPlace,
 }) => {
-  const { user, setUser } = useContext(UserContext);
-  const { addWishlist } = useUserContext();
-  const { wishlist: wishlistGlobal, setWishlist: setWishlistGlobal } =
-    useContext(WishlistContext);
+  const { user } = useContext(UserContext);
+  const { addWishlist } = useWishlistContext();
   const initialWishListState: Wishlist = {
     id: "",
     userId: "",
@@ -43,23 +37,7 @@ const WishListModal: FC<ModalProps> = ({
     try {
       if (currentPlace) {
         if (user) {
-          const response = await axios.post<WishlistResponse>(
-            `${ENDPOINT}${WISHLIST}/`,
-            {
-              ...wishlist,
-              id,
-              userId: user.id,
-              list: [...wishlist.list, currentPlace],
-            }
-          );
-          const data = await response.data;
-          //useAsync(createWishlist)
-          console.log("im here");
-          addWishlist(data.id);
-          setWishlistGlobal([
-            ...wishlistGlobal,
-            { id, list: data.list, name: data.name },
-          ]);
+          addWishlist(id, wishlist, user.id, currentPlace);
           handleModal();
         }
       }

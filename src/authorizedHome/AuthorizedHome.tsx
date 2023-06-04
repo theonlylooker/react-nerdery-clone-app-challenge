@@ -8,46 +8,15 @@ import {
   BottomNavbar,
 } from ".";
 import { Footer } from "../shared";
-import { useState, useRef, useEffect, useContext } from "react";
+import { useState, useRef, useEffect } from "react";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
 import { StickyHeader, FixedBottomNav } from "./styles";
 import WishListModal from "./wishListModal/WishListModal";
 import useModal from "../hooks/useModal";
 import { PlaceWithoutType } from "./type";
-import { ENDPOINT, PLACE, WISHLIST } from "../shared/API";
-import {
-  WishlistContext,
-  useWishlistContext,
-} from "../context/WishlistContext";
-import { UserContext, useUserContext } from "../context/Context";
-import axios from "axios";
+import { ENDPOINT, PLACE } from "../shared/API";
 
 export const AuthorizedHome = () => {
-  ////
-  // const { user, setUser } = useContext(UserContext);
-  // const { setWishlist } = useContext(WishlistContext);
-  // const tokenString = localStorage.getItem("airbnbToken");
-  // const userString = localStorage.getItem("airbnbUser");
-
-  // const getWishslists = async (userId: string) => {
-  //   try {
-  //     const response = await axios.get(
-  //       `${ENDPOINT}${WISHLIST}?userId=${userId}`
-  //     );
-  //     const data = await response.data;
-  //     setWishlist(data);
-  //   } catch (error) {
-  //     console.log("error global");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (userString) {
-  //     setUser(JSON.parse(userString));
-  //     getWishslists(JSON.parse(userString).id);
-  //   }
-  // }, []);
-  ////
   const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
   const [page, setPage] = useState({ location: 1 });
   const [currentPlace, setCurrentPlace] = useState<PlaceWithoutType | null>(
@@ -112,7 +81,6 @@ export const AuthorizedHome = () => {
                         city={place.city}
                         rating={place.rating}
                         priceDay={place.priceDay}
-                        //wished={allElements.includes(place.id)}
                         handleModal={handleModal}
                         handleCurrent={handleCurrent}
                       />
@@ -129,7 +97,6 @@ export const AuthorizedHome = () => {
                       city={place.city}
                       rating={place.rating}
                       priceDay={place.priceDay}
-                      //wished={allElements.includes(place.id)}
                       handleModal={handleModal}
                       handleCurrent={handleCurrent}
                     />

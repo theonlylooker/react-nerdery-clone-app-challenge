@@ -7,30 +7,21 @@ import { WishlistResponse } from "../authorizedHome/wishListModal/type";
 import { PlaceWithoutType } from "../authorizedHome/type";
 
 export const fetchWishlists = async (id: string) => {
-  return await axios.get<WishlistCtx>(`${ENDPOINT}${WISHLIST}?userId=${id}`);
+  return axios.get<WishlistCtx>(`${ENDPOINT}${WISHLIST}?userId=${id}`);
 };
 
-export const updateUserWishlists = async (id: string, wishlists: string[]) => {
-  return await axios.patch<UserCtxState>(`${ENDPOINT}${USERS}/${id}`, {
+export const updateUserWishlists = async (
+  id: string,
+  userId: string,
+  wishlists: string[]
+) => {
+  return axios.patch<UserCtxState>(`${ENDPOINT}${USERS}/${userId}`, {
     wishlists: [...wishlists, id],
   });
 };
 
-export const registerUser = async (newUser: {
-  email: string;
-  password: string;
-  wishlists: string[];
-}) => {
-  return await axios.post<register>(`${ENDPOINT}${REGISTER}`, {
-    ...newUser,
-  });
-};
-
 export const createWishlist = async (wishlist: Wishlist) => {
-  return await axios.post<WishlistResponse>(
-    `${ENDPOINT}${WISHLIST}/`,
-    wishlist
-  );
+  return axios.post<WishlistResponse>(`${ENDPOINT}${WISHLIST}/`, wishlist);
 };
 
 export const createWishlistElement = async (
@@ -38,7 +29,7 @@ export const createWishlistElement = async (
   wishlist: PlaceWithoutType[],
   current: PlaceWithoutType
 ) => {
-  return await axios.patch<Wishlist>(`${ENDPOINT}${WISHLIST}/${id}`, {
+  return axios.patch<Wishlist>(`${ENDPOINT}${WISHLIST}/${id}`, {
     list: [...wishlist, current],
   });
 };
@@ -48,15 +39,28 @@ export const deleteWishlistElement = async (
   deleteId: string,
   wishlist: PlaceWithoutType[]
 ) => {
-  return await axios.patch<Wishlist>(`${ENDPOINT}${WISHLIST}/${id}`, {
+  return axios.patch<Wishlist>(`${ENDPOINT}${WISHLIST}/${id}`, {
     list: wishlist.filter((place) => place.id !== deleteId),
   });
 };
 
-export const login = async (signUp: { email: string; password: string }) => {
-  await axios.post<register>(`${ENDPOINT}${LOGIN}`, signUp);
+export const loginUser = async (signUp: {
+  email: string;
+  password: string;
+}) => {
+  return axios.post<register>(`${ENDPOINT}${LOGIN}`, signUp);
+};
+
+export const registerUser = async (newUser: {
+  email: string;
+  password: string;
+  wishlists: string[];
+}) => {
+  return axios.post<register>(`${ENDPOINT}${REGISTER}`, {
+    ...newUser,
+  });
 };
 
 export const emailExists = async (email: string) => {
-  await axios.get<[]>(`${ENDPOINT}${USERS}?email=${email}`);
+  return axios.get<[]>(`${ENDPOINT}${USERS}?email=${email}`);
 };
