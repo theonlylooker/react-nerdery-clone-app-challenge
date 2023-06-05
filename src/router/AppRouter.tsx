@@ -1,21 +1,25 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { UnauthorizedHome } from "../unathorizedHome";
-import { PlaceDetails } from "../pageDetails";
-import { Signup } from "../signup&login";
-import ProtectedRoute from "../context/ProtectedRoute";
+import { PlaceDetails } from "../modules/pageDetails";
+import { Wishlist, WishlistDetail } from "../modules/wishlist";
+import { Home } from "../modules/home";
+import { Auth } from "../modules/auth";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ProtectedRoute />,
+    element: <Home />,
   },
   {
     path: "/wishlist",
-    element: <>wishlist</>,
+    element: <Wishlist />,
+  },
+  {
+    path: "/wishlist/:id",
+    element: <WishlistDetail />,
   },
   {
     path: "/login",
-    element: <Signup />,
+    element: <Auth />,
   },
   {
     path: "/place/:id",

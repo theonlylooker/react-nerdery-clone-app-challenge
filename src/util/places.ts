@@ -1,11 +1,27 @@
 import { faker } from "@faker-js/faker";
 import fs from "fs";
-import { place } from "../home/card/type";
+import { Place } from "../modules/shared/types/types";
+//import { place } from "../home/card/type";
 
-const createRandomPlace = (): place => {
+// interface Place{
+//   list: Wishlist | null;
+//   ownerId: string;
+//   placeId: string;
+//   type: Place;
+//   image: string;
+//   iconUser: string;
+//   city: string;
+//   country: string;
+//   description: string;
+//   priceDay: number;
+//   wished: boolean;
+//   rating: number;
+//}
+
+const createRandomPlace = (): Place => {
   return {
     ownerId: faker.string.uuid(),
-    placeId: faker.string.uuid(),
+    id: faker.string.uuid(),
     image: faker.image.url(),
     iconUser: faker.image.url(),
     type: faker.helpers.arrayElement([

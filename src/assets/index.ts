@@ -15,3 +15,4 @@ export { ReactComponent as Share } from "./share.svg";
 export { ReactComponent as Star } from "./star.svg";
 export { ReactComponent as ReactIcon } from "./react.svg";
 export { ReactComponent as Airbnb } from "./airbnb.svg";
+export { ReactComponent as Close } from "./close.svg";
