@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const useModal = (): { modal: boolean; handleModal: () => void } => {
   const [modal, setModal] = useState(false);

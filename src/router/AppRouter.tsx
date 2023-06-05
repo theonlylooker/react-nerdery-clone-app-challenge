@@ -1,14 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { PlaceDetails } from "../pageDetails";
-import { Signup } from "../signup&login";
-import { Wishlist, WishlistDetail } from "../wishlist";
-import ProtectedRoute from "../context/ProtectedRoute";
-import { AuthorizedHome } from "../authorizedHome";
+import { PlaceDetails } from "../modules/pageDetails";
+import { Wishlist, WishlistDetail } from "../modules/wishlist";
+import { Home } from "../modules/home";
+import { Auth } from "../modules/auth";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AuthorizedHome />,
+    element: <Home />,
   },
   {
     path: "/wishlist",
@@ -20,7 +19,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Signup />,
+    element: <Auth />,
   },
   {
     path: "/place/:id",

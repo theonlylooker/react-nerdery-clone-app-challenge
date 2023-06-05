@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 //import { place } from "../home/card/type";
 import { currentConsumer } from "../consumers/index";
-import { ENDPOINT, PLACE } from "../shared/API";
-import { Place } from "../shared/types/types";
+import { ENDPOINT, PLACE } from "../modules/shared/API";
+import { Place } from "../modules/shared/types/types";
 const useInfiniteScroll = (page: {
   location: number;
 }): {

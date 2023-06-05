@@ -5,7 +5,7 @@ import React, {
   useContext,
   useEffect,
 } from "react";
-import { UserCtxState } from "../shared/types/types";
+import { UserCtxState } from "../modules/shared/types/types";
 import {
   loginUser,
   registerUser,

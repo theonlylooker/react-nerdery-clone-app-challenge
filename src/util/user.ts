@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import fs from "fs";
-import { User } from "../shared/types/types";
+import { User } from "../modules/shared/types/types";
 // type typeUser = "user" | "host";
 
 // interface user {

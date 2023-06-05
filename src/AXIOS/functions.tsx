@@ -1,10 +1,16 @@
 import axios from "axios";
-import { ENDPOINT, LOGIN, REGISTER, USERS, WISHLIST } from "../shared/API";
-import { register } from "../signup&login/types";
+import {
+  ENDPOINT,
+  LOGIN,
+  REGISTER,
+  USERS,
+  WISHLIST,
+} from "../modules/shared/API";
+import { register } from "../modules/signup&login/types";
 import { WishlistCtx } from "../context/WishlistContext";
-import { UserCtxState, Wishlist } from "../shared/types/types";
-import { WishlistResponse } from "../authorizedHome/wishListModal/type";
-import { PlaceWithoutType } from "../authorizedHome/type";
+import { UserCtxState, Wishlist } from "../modules/shared/types/types";
+import { WishlistResponse } from "../modules/home/wishListModal/type";
+import { PlaceWithoutType } from "../modules/home/type";
 
 export const fetchWishlists = async (id: string) => {
   return axios.get<WishlistCtx>(`${ENDPOINT}${WISHLIST}?userId=${id}`);

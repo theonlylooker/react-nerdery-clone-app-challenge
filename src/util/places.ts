@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import fs from "fs";
-import { Place } from "../shared/types/types";
+import { Place } from "../modules/shared/types/types";
 //import { place } from "../home/card/type";
 
 // interface Place{

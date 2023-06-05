@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, FC, useContext } from "react";
-import { PlaceWithoutType } from "../authorizedHome/type";
-import { Wishlist } from "../shared/types/types";
+import { PlaceWithoutType } from "../modules/home/type";
+import { Wishlist } from "../modules/shared/types/types";
 import { UserContext, useUserContext } from "./Context";
 import {
   createWishlistElement,
@@ -29,7 +29,7 @@ interface WishlistProvider {
 export const WishlistProvider: FC<WishlistProvider> = ({ children }) => {
   const [wishlist, setWishlist] = useState(wishlistDefaultValue.wishlist);
   const { user } = useContext(UserContext);
-
+  /*TODO: maybe there is a bug to get this function here, dont reload fast */
   const getWishlists = async () => {
     if (user) {
       const response = await fetchWishlists(user.id);

@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
 //import { UnauthorizedHome } from "../unathorizedHome";
-import { AuthorizedHome } from "../authorizedHome/";
+import { Home } from "../modules/home";
 import { UserContext } from "./Context";
 import { WishlistContext } from "./WishlistContext";
 import axios from "axios";
-import { ENDPOINT, WISHLIST } from "../shared/API";
+import { ENDPOINT, WISHLIST } from "../modules/shared/API";
 
 /*TODO: logout user after reload page because its a security breach to save the user on the localstorage */
 
@@ -34,7 +34,7 @@ const ProtectedRoute = () => {
   }, []);
 
   if (userString) {
-    return <AuthorizedHome />;
+    return <Home />;
   }
   //return <UnauthorizedHome />;
 };
