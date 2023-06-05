@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home } from "../home/Home";
-import { PlaceDetails } from "../pageDetails/PlaceDetails";
+import { PlaceDetails } from "../modules/pageDetails";
+import { Wishlist, WishlistDetail } from "../modules/wishlist";
+import { Home } from "../modules/home";
+import { Auth } from "../modules/auth";
 
 const router = createBrowserRouter([
   {
@@ -9,11 +11,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/wishlist",
-    element: <>wishlist</>,
+    element: <Wishlist />,
+  },
+  {
+    path: "/wishlist/:id",
+    element: <WishlistDetail />,
   },
   {
     path: "/login",
-    element: <>login</>,
+    element: <Auth />,
   },
   {
     path: "/place/:id",

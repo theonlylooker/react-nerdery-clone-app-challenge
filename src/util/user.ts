@@ -1,35 +1,40 @@
 import { faker } from "@faker-js/faker";
 import fs from "fs";
+import { User } from "../modules/shared/types/types";
+// type typeUser = "user" | "host";
 
-type typeUser = "user" | "host";
+// interface user {
+//   id: string;
+//   name: string;
+//   password: string;
+//   picture: string;
+//   reviews: number;
+//   email: string;
+//   country: number;
+//   type: typeUser;
+//   birthday: Date;
+//   career: string;
+//   estudy: string;
+//   hobby: string;
+//   resume: string;
+// }
 
-interface user {
-  nombre: string;
-  foto: string;
-  reseñas: number;
-  correo: string;
-  pais: number;
-  tipo: typeUser;
-  nacimiento: Date;
-  profesion: string;
-  estudio: string;
-  hobby: string;
-  resumen: string;
-}
-
-const createRandomUser = (): user => {
+const createRandomUser = (): User => {
   return {
-    nombre: faker.person.fullName(),
-    foto: faker.image.avatar(),
-    reseñas: faker.number.int(),
-    correo: faker.internet.email(),
-    pais: faker.number.int(),
-    tipo: faker.helpers.arrayElement(["user", "host"]),
-    nacimiento: faker.date.past(),
-    profesion: faker.person.jobTitle(),
-    estudio: faker.person.jobType(),
+    id: faker.string.uuid(),
+    wishlists: [],
+    name: faker.person.fullName(),
+    password: faker.internet.password(),
+    picture: faker.image.avatar(),
+    reviews: faker.number.int(),
+    email: faker.internet.email(),
+    country: faker.location.country(),
+    type: faker.helpers.arrayElement(["user", "host"]),
+    birthday: faker.date.past(),
+    career: faker.person.jobTitle(),
+    study: faker.person.jobType(),
     hobby: faker.lorem.words(),
-    resumen: faker.lorem.paragraph(),
+    resume: faker.lorem.paragraph(),
   };
 };
 const createNUsers = (numUsers: number) => {
@@ -37,9 +42,9 @@ const createNUsers = (numUsers: number) => {
 };
 const COUNT = 4;
 
-const users = {
-  count: COUNT,
-  data: createNUsers(COUNT),
-};
+const users = createNUsers(COUNT);
 
-fs.writeFileSync("src/API/users.json", JSON.stringify(users, null, "\t"));
+fs.writeFileSync(
+  "src/API/local/userSnapshot.json",
+  JSON.stringify(users, null, "\t")
+);
