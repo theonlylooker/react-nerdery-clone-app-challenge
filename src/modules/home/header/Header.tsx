@@ -4,14 +4,13 @@ import { FilterCarrousel } from "../filterCarrousel/FilterCarrousel";
 import { HeaderI } from "./styles";
 
 interface Header {
-  setPage: (props: { location: number }) => void;
-  setCategory: (cateogory: string) => void;
+  handleCategory: (category: string) => void;
 }
-export const Header: FC<Header> = ({ setPage, setCategory }) => {
+export const Header: FC<Header> = ({ handleCategory }) => {
   return (
     <HeaderI>
       <Search />
-      <FilterCarrousel setPage={setPage} setCategory={setCategory} />
+      <FilterCarrousel handleCategory={handleCategory} />
     </HeaderI>
   );
 };

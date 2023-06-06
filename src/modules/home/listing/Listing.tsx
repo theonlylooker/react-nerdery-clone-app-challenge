@@ -1,12 +1,28 @@
-import React, { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import useInfiniteScroll from "../../../hooks/useInfiniteScroll";
 import axios from "axios";
 import { ENDPOINT, PLACE } from "../../shared/API";
 import { Place } from "../../shared/types/types";
 import { Card, CardGridContainter } from "..";
+import { useSearchParams } from "react-router-dom";
+import { PlaceWithoutType } from "../type";
 
-export const Listing = () => {
+interface Listing {
+  handleCurrent: (current: PlaceWithoutType) => void;
+  handleModal: () => void;
+}
+
+export const Listing: FC<Listing> = ({ handleCurrent, handleModal }) => {
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get("type");
   const getPlaces = async (page: number) => {
+    if (category) {
+      console.log("entre");
+      const response = await axios.get<Place[]>(
+        `${ENDPOINT}${PLACE}?type=${category}&_page=${page}`
+      );
+      return response.data;
+    }
     const response = await axios.get<Place[]>(
       `${ENDPOINT}${PLACE}?_page=${page}`
     );
@@ -14,8 +30,6 @@ export const Listing = () => {
   };
   const { getNext, data, hasNextPage } = useInfiniteScroll(getPlaces);
   const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
-  const [test, setTest] = useState("soy un test");
-
   const observer = useRef(
     new IntersectionObserver((entries) => {
       const first = entries[0];
@@ -38,13 +52,17 @@ export const Listing = () => {
     };
   }, [lastElement]);
 
+  useEffect(() => {
+    getNext(true);
+  }, [category]);
+
   return (
     <>
       {data?.length}
-      <button onClick={getNext}>next</button>
+      <button onClick={() => getNext()}>next</button>
       <CardGridContainter>
         {data?.map((place, index) => {
-          return index === data.length - 1 && hasNextPage ? (
+          return index === data.length - 1 /*&& hasNextPage*/ ? (
             <div ref={setLastElement} key={index}>
               <>soy ref</>
               <Card
@@ -58,8 +76,8 @@ export const Listing = () => {
                 city={place.city}
                 rating={place.rating}
                 priceDay={place.priceDay}
-                handleModal={() => console.log(1)}
-                handleCurrent={() => console.log(2)}
+                handleModal={handleModal}
+                handleCurrent={handleCurrent}
               />
             </div>
           ) : (
@@ -74,8 +92,8 @@ export const Listing = () => {
               city={place.city}
               rating={place.rating}
               priceDay={place.priceDay}
-              handleModal={() => console.log(2)}
-              handleCurrent={() => console.log(1)}
+              handleModal={handleModal}
+              handleCurrent={handleCurrent}
             />
           );
         })}

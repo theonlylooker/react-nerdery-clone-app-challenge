@@ -5,7 +5,7 @@ const useInfiniteScroll = (
   queryFn: (args: number) => Promise<Place[]>
 ): {
   data: Place[] | null;
-  getNext: () => void;
+  getNext: (reset?: boolean) => void;
   hasNextPage: boolean;
   error: string;
   loading: boolean;
@@ -15,6 +15,7 @@ const useInfiniteScroll = (
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
+  const [singleReset, setSingleReset] = useState(false);
 
   const asyncCallback = async () => {
     try {
@@ -28,8 +29,18 @@ const useInfiniteScroll = (
     }
   };
 
-  const getNext = async () => {
-    setPage((prevPage) => prevPage + 1);
+  const getNext = async (reset?: boolean) => {
+    if (reset === true) {
+      console.log("aca", reset);
+      setData([]);
+      if (page === 1) {
+        setSingleReset((prevSingleReset) => !prevSingleReset);
+      } else {
+        setPage(1);
+      }
+    } else {
+      setPage((prevPage) => prevPage + 1);
+    }
   };
   const getNextPage = async () => {
     try {
@@ -38,6 +49,7 @@ const useInfiniteScroll = (
         if (response.length === 0) {
           setHasNextPage(false);
         }
+        console.log({ data }, { response });
         setData([...data, ...response]);
       }
     } catch (error) {
@@ -48,7 +60,7 @@ const useInfiniteScroll = (
 
   useEffect(() => {
     getNextPage();
-  }, [page]);
+  }, [page, singleReset]);
 
   useEffect(() => {
     asyncCallback();

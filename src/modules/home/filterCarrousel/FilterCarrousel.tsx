@@ -1,22 +1,18 @@
+import { FC } from "react";
 import { House, Department, Cave, Mini, Dome, Farm } from "../../../assets";
 import { Carrousel, FilterItem } from "./styles";
 import { useSearchParams } from "react-router-dom";
 
 interface FilterCarrousel {
-  setPage: (props: { location: number }) => void;
-  setCategory: (props: string) => void;
+  handleCategory: (category: string) => void;
 }
 
-export const FilterCarrousel: FC<FilterCarrousel> = ({
-  setPage,
-  setCategory,
-}) => {
+export const FilterCarrousel: FC<FilterCarrousel> = ({ handleCategory }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   return (
     <Carrousel>
       <FilterItem
         onClick={() => {
-          setPage({ location: 1 });
           setSearchParams("type=cabins", { replace: true });
         }}
       >
@@ -25,7 +21,6 @@ export const FilterCarrousel: FC<FilterCarrousel> = ({
       </FilterItem>
       <FilterItem
         onClick={() => {
-          setPage({ location: 1 });
           setSearchParams("type=department", { replace: true });
         }}
       >
@@ -34,7 +29,6 @@ export const FilterCarrousel: FC<FilterCarrousel> = ({
       </FilterItem>
       <FilterItem
         onClick={() => {
-          setPage({ location: 1 });
           setSearchParams("type=caves", { replace: true });
         }}
       >
@@ -43,7 +37,6 @@ export const FilterCarrousel: FC<FilterCarrousel> = ({
       </FilterItem>
       <FilterItem
         onClick={() => {
-          setPage({ location: 1 });
           setSearchParams("type=mini", { replace: true });
         }}
       >
@@ -52,7 +45,6 @@ export const FilterCarrousel: FC<FilterCarrousel> = ({
       </FilterItem>
       <FilterItem
         onClick={() => {
-          setPage({ location: 1 });
           setSearchParams("type=dome", { replace: true });
         }}
       >
@@ -61,7 +53,6 @@ export const FilterCarrousel: FC<FilterCarrousel> = ({
       </FilterItem>
       <FilterItem
         onClick={() => {
-          setPage({ location: 1 });
           setSearchParams("type=farm", { replace: true });
         }}
       >
