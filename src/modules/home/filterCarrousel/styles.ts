@@ -4,6 +4,7 @@ export const FilterItem = styled.button`
   &.active {
     font-size: 40px;
   }
+  cursor: pointer;
   display: flex;
   background-color: inherit;
   border: none;
