@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { Close } from "../../../assets";
 
 export const Modal = styled.div<{ modal: boolean }>`
-  position: ${({ modal }) => `${modal ? "absolute" : "none"}`};
+  display: ${({ modal }) => `${modal ? "block" : "none"}`};
+  position: ${({ modal }) => `${modal ? "absolute" : ""}`};
   z-index: 3;
   width: 100%;
   height: 100vh;
@@ -11,7 +12,7 @@ export const Modal = styled.div<{ modal: boolean }>`
 `;
 export const ModalBody = styled.div<{ modal: boolean }>`
   background-color: ${({ theme }) => `${theme.colors.shade01}`};
-  position: ${({ modal }) => `${modal ? "absolute" : "none"}`};
+  position: ${({ modal }) => `${modal ? "absolute" : ""}`};
   width: 100%;
   bottom: 0;
   padding: 24px;
