@@ -1,115 +1,44 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import { place } from "../home/card/type";
-import { currentConsumer } from "../consumers/index";
-import { useSearchParams } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import { Place } from "../modules/shared/types/types";
 
-// const useInfiniteScroll = (page: {
-//   location: number;
-// }): {
-//   data: place[] | null;
-//   getNext: () => void;
-//   hasMore: boolean;
-// } => {
-//   const [hasMore, setHasMore] = useState(true);
-//   const [data, setData] = useState<place[]>([]);
-//   const [searchParams, setSearchParams] = useSearchParams();
-
-//   // const URL = `http://localhost:3030/places?${
-//   //   searchParams.get("type") ? `type=${searchParams.get("type")}&` : ""
-//   // }_page=${page.location}`;
-//   const URL = `http://localhost:3030/places?_page=${page.location}`;
-//   useEffect(() => {
-//     getNext();
-//   }, []);
-
-//   const getNext = async () => {
-//     console.log(URL);
-//     const responseData = await currentConsumer<place[]>(URL);
-//     //const responseData = response.;
-//     if (!responseData.length) setHasMore(false);
-
-//     setData((prevData) => [...data, ...responseData]);
-//   };
-
-//   return { data, getNext, hasMore };
-// };
-
-const useInfiniteScroll = <T, A>(
-  queryFn: (args: A) => Promise<T>
+const useInfiniteScroll = (
+  queryFn: (args: number) => Promise<Place[]>
 ): {
-  data: T | null;
-  error: unknown;
+  data: Place[] | null;
+  getNext: () => void;
   hasNextPage: boolean;
-  fetchNextPage: (args: A) => Promise<void>;
-  reset: (args: A) => Promise<void>;
+  error: string;
+  loading: boolean;
 } => {
-  const [data, setData] = useState<T | null>(null);
+  const [data, setData] = useState<Place[] | null>(null);
   const [error, setError] = useState("");
-  //const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
-  const [pageInitalizer, setPageInitializer] = useState(1);
-  //change to async name
-  const asyncCallback = async (args: A) => {
+
+  const asyncCallback = async () => {
     try {
-      //const response = await currentConsumer<T>(URL);
-      const response = await queryFn(args);
-      //setLoading(false);
+      const response = await queryFn(page);
+      setLoading(false);
       setData(response);
-      setPageInitializer(2);
+      setPage((prevPage) => prevPage + 1);
     } catch (error) {
       if (error instanceof Error) setError(error.message);
       else setError(String(error));
     }
-import { useEffect, useRef, useState } from "react";
-//import { place } from "../home/card/type";
-import { currentConsumer } from "../consumers/index";
-import { ENDPOINT, PLACE } from "../modules/shared/API";
-import { Place } from "../modules/shared/types/types";
-const useInfiniteScroll = (page: {
-  location: number;
-}): {
-  data: Place[] | null;
-  getNext: () => void;
-  hasMore: boolean;
-} => {
-  const [hasMore, setHasMore] = useState(true);
-  const [data, setData] = useState<Place[]>([]);
-  //const [page, setPage] = useState({ location: 1 });
-  const URL = `${ENDPOINT}${PLACE}?_page=${page.location}`;
-  useEffect(() => {
-    getNext();
-  }, []);
+  };
 
   const getNext = async () => {
-    const response = await currentConsumer<Place[]>(URL);
-    const responseData = response.data;
-    //setPage({ ...page, location: page.location + 1 });
-    if (!responseData.length) setHasMore(false);
-    setData((prevData) => [...data, ...responseData]);
+    setPage((prevPage) => prevPage + 1);
   };
-
-  const reset = async (args: A) => {
-    asyncCallback(args);
-  };
-
-  const fetchNextPage = async (args: A) => {
+  const getNextPage = async () => {
     try {
-      //console.log(page, "another one");
-      console.log({ args });
-      const response = await queryFn(args);
-      //console.log(data);
-      if (Array.isArray(response)) {
-        //console.log(response.length);
-        if (!response.length) {
-          //console.log(response.length);
-          //setHasNextPage(false);
+      const response = await queryFn(page);
+      if (Array.isArray(data)) {
+        if (response.length === 0) {
+          setHasNextPage(false);
         }
-        //console.log(page);
-        //setPage(page + 1);
-        if (data && Array.isArray(data)) {
-          //setData((prevData) => [...prevData, ...response] as T | null);
-          setData([...data, ...response] as T | null);
-        }
+        setData([...data, ...response]);
       }
     } catch (error) {
       if (error instanceof Error) setError(error.message);
@@ -118,10 +47,12 @@ const useInfiniteScroll = (page: {
   };
 
   useEffect(() => {
-    //setLoading(true);
-    asyncCallback({ pageParam: pageInitalizer } as A);
-  }, []);
-  return { data, error, fetchNextPage, reset, hasNextPage };
-};
+    getNextPage();
+  }, [page]);
 
+  useEffect(() => {
+    asyncCallback();
+  }, []);
+  return { data, hasNextPage, getNext, error, loading };
+};
 export default useInfiniteScroll;
