@@ -18,6 +18,7 @@ export const PlaceDateButton = styled.div`
   font-size: 18px;
   padding: 14px 24px;
   border-radius: 9px;
+  cursor: pointer;
 `;
 
 export const PlaceDateRange = styled.div`

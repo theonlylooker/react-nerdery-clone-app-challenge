@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
   PlaceAboutLayout,
   PlaceAboutIntroduction,
@@ -7,17 +8,21 @@ import {
   PlaceAboutFeaturesItems,
 } from "./styles";
 
-export const PlaceAbout = () => {
+interface PlaceAbout {
+  description: string;
+}
+export const PlaceAbout: FC<PlaceAbout> = ({ description }) => {
   return (
     <PlaceAboutLayout>
       <PlaceAboutIntroduction>
         <PlaceAboutSubtitle>About this place</PlaceAboutSubtitle>
         <PlaceAboutParagraph>
-          This unique place has a style all its own. A very quiet homely house
+          {description}
+          {/* This unique place has a style all its own. A very quiet homely house
           with a modern contemporary style. 25 mins to downtown Ottawa. <br />
           The antidote to hotel rooms and sterile Airbnb rentals. Aesthetic and
           comfort abound in the charming and well furnished unit. Spacious and
-          drenched in natural light. Take a look around, we'd love to host you
+          drenched in natural light. Take a look around, we'd love to host you */}
         </PlaceAboutParagraph>
       </PlaceAboutIntroduction>
       <PlaceAboutFeatures>

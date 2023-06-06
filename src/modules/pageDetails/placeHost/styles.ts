@@ -63,3 +63,10 @@ export const PlaceHostFact = styled.div`
   gap: 15px;
   margin-bottom: 20px;
 `;
+
+export const UserIcon = styled.img<{ src: string }>`
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  content: url(${({ src }) => `${src}`});
+`;

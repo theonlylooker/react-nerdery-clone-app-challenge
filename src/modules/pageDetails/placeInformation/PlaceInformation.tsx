@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { Star } from "../../../assets";
 import {
   PlaceInformationLayout,
@@ -15,7 +16,11 @@ import {
   PlaceInformationListItemSubtitle,
 } from "./styles";
 
-export const PlaceInformation = () => {
+interface PlaceInformation {
+  rating: number;
+  city: string;
+}
+export const PlaceInformation: FC<PlaceInformation> = ({ rating, city }) => {
   return (
     <PlaceInformationLayout>
       <PlaceInformationHeader>
@@ -24,10 +29,10 @@ export const PlaceInformation = () => {
         </PlaceInformationH1>
         <PlaceInformationStatistics>
           <div>
-            <Star /> <span>4.87</span>
+            <Star /> <span>{rating}</span>
           </div>
           <div>15 reviews</div>
-          <div>Ottawa</div>
+          <div>{city}</div>
         </PlaceInformationStatistics>
       </PlaceInformationHeader>
 

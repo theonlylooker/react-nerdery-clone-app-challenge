@@ -8,20 +8,34 @@ import {
 } from ".";
 import { Footer } from "../shared/";
 import { FixedBottomNav } from "./styles";
+import useAsync from "../../hooks/useAsync";
+import axios from "axios";
+import { ENDPOINT, PLACE } from "../shared/API";
+import { Place } from "../shared/types/types";
 
 export const PlaceDetails = () => {
   const { id } = useParams();
-  return (
-    <div>
-      <PlaceHeader />
-      <div>image</div>
-      <PlaceInformation />
-      <PlaceHost />
-      <PlaceAbout />
-      <FixedBottomNav>
-        <PlaceDate />
-      </FixedBottomNav>
-      <Footer />
-    </div>
-  );
+  const getPlaceId = async () => {
+    const response = await axios.get<Place>(`${ENDPOINT}${PLACE}/${id}`);
+    return response.data;
+  };
+  const { data, error, loading } = useAsync(getPlaceId);
+  if (loading) {
+    return <>loading</>;
+  }
+  if (data) {
+    return (
+      <div>
+        <PlaceHeader />
+        <img src={data.image} />
+        <PlaceInformation city={data.city} rating={data.rating} />
+        <PlaceHost avatar={data.iconUser} />
+        <PlaceAbout description={data.description} />
+        <FixedBottomNav>
+          <PlaceDate price={data.priceDay} />
+        </FixedBottomNav>
+        <Footer />
+      </div>
+    );
+  }
 };

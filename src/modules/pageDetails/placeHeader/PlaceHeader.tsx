@@ -11,7 +11,7 @@ export const PlaceHeader = () => {
     <PlaceHeaderLayout>
       <div>
         <BackIcon onClick={getBack} />
-        <PlaceHeaderText>Header</PlaceHeaderText>
+        {/* <PlaceHeaderText>Header</PlaceHeaderText> */}
       </div>
       <div>
         <Share />

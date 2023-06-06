@@ -1,15 +1,19 @@
+import { FC } from "react";
 import {
   PlaceDateLayout,
   PlaceDateText,
   PlaceDateRange,
   PlaceDateButton,
 } from "./styles";
-export const PlaceDate = () => {
+interface PlaceDate {
+  price: number;
+}
+export const PlaceDate: FC<PlaceDate> = ({ price }) => {
   return (
     <PlaceDateLayout>
       <PlaceDateText>
         <div>
-          <span>$164 </span>night
+          <span>${price} </span>night
         </div>
         <PlaceDateRange>Jun 1 - 6</PlaceDateRange>
       </PlaceDateText>
