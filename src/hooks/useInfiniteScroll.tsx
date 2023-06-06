@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Place } from "../modules/shared/types/types";
 
 const useInfiniteScroll = (
@@ -31,7 +31,6 @@ const useInfiniteScroll = (
 
   const getNext = async (reset?: boolean) => {
     if (reset === true) {
-      console.log("aca", reset);
       setData([]);
       if (page === 1) {
         setSingleReset((prevSingleReset) => !prevSingleReset);

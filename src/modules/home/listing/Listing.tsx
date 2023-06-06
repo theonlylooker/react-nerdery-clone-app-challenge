@@ -6,6 +6,7 @@ import { Place } from "../../shared/types/types";
 import { Card, CardGridContainter } from "..";
 import { useSearchParams } from "react-router-dom";
 import { PlaceWithoutType } from "../type";
+import useIntersectObserver from "../../../hooks/useIntersectObserver";
 
 interface Listing {
   handleCurrent: (current: PlaceWithoutType) => void;
@@ -17,7 +18,6 @@ export const Listing: FC<Listing> = ({ handleCurrent, handleModal }) => {
   const category = searchParams.get("type");
   const getPlaces = async (page: number) => {
     if (category) {
-      console.log("entre");
       const response = await axios.get<Place[]>(
         `${ENDPOINT}${PLACE}?type=${category}&_page=${page}`
       );
@@ -29,28 +29,29 @@ export const Listing: FC<Listing> = ({ handleCurrent, handleModal }) => {
     return response.data;
   };
   const { getNext, data, hasNextPage } = useInfiniteScroll(getPlaces);
-  const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
-  const observer = useRef(
-    new IntersectionObserver((entries) => {
-      const first = entries[0];
-      if (first.isIntersecting) {
-        getNext();
-      }
-    })
-  );
+  const { setLastElement } = useIntersectObserver(getNext);
+  // const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
+  // const observer = useRef(
+  //   new IntersectionObserver((entries) => {
+  //     const first = entries[0];
+  //     if (first.isIntersecting) {
+  //       getNext();
+  //     }
+  //   })
+  // );
 
-  useEffect(() => {
-    const currentElement = lastElement;
-    const currentObserver = observer.current;
-    if (currentElement) {
-      currentObserver.observe(currentElement);
-    }
-    return () => {
-      if (currentElement) {
-        currentObserver.unobserve(currentElement);
-      }
-    };
-  }, [lastElement]);
+  // useEffect(() => {
+  //   const currentElement = lastElement;
+  //   const currentObserver = observer.current;
+  //   if (currentElement) {
+  //     currentObserver.observe(currentElement);
+  //   }
+  //   return () => {
+  //     if (currentElement) {
+  //       currentObserver.unobserve(currentElement);
+  //     }
+  //   };
+  // }, [lastElement]);
 
   useEffect(() => {
     getNext(true);
