@@ -19,8 +19,11 @@ export const Auth = () => {
   const [user, setUser] = useState(initialUser);
   const [typeLogin, setTypeLogin] = useState("phone");
   const [switchType, setSwitchType] = useState<string | null>(null);
-  const handleUser = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUser({ ...user, [e.currentTarget.name]: e.currentTarget.value });
+  // const handleUser = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setUser({ ...user, [e.currentTarget.name]: e.currentTarget.value });
+  // };
+  const handleUser = (name: string, data: string) => {
+    setUser({ ...user, [name]: data });
   };
   const handleTypeLogin = () => {
     typeLogin === "phone" ? setTypeLogin("email") : setTypeLogin("phone");
@@ -36,7 +39,6 @@ export const Auth = () => {
           <SignupH2>Welcome to Airbnb</SignupH2>
           {typeLogin === "email" && (
             <Email
-              email={user.email}
               handleUser={handleUser}
               handleSwitchType={handleSwitchType}
             />
@@ -68,10 +70,8 @@ export const Auth = () => {
           )}
         </>
       )}
-      {switchType === "login" && <Login user={user} handleUser={handleUser} />}
-      {switchType === "register" && (
-        <Signup user={user} handleUser={handleUser} />
-      )}
+      {switchType === "login" && <Login user={user} />}
+      {switchType === "register" && <Signup user={user} />}
       <SignupLink href="#"> need help</SignupLink>
     </SignupLayout>
   );

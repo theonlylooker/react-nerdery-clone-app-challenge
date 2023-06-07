@@ -14,6 +14,8 @@ import { UserContext } from "../../../context/Context";
 import { Wishlist } from "../../shared/types/types";
 import { Modal as ModalProps } from "./type";
 import { useWishlistContext } from "../../../context/WishlistContext";
+import styled from "styled-components";
+
 const WishListModal: FC<ModalProps> = ({
   modal,
   handleModal,
@@ -46,6 +48,7 @@ const WishListModal: FC<ModalProps> = ({
       console.log("error to add wishlist");
     }
   };
+  console.log(wishlist.name === "", "asd");
   return (
     <Modal modal={modal}>
       <ModalBody modal={modal}>
@@ -66,9 +69,14 @@ const WishListModal: FC<ModalProps> = ({
               <label htmlFor="wishlist">Name</label>
             </Input>
           </ModalContent>
+
           <ModalAction>
             <ModalButton secondary={true}>Clear</ModalButton>
-            <ModalButton onClick={handleSubmit} type="submit">
+            <ModalButton
+              onClick={handleSubmit}
+              type="submit"
+              disabled={wishlist.name === ""}
+            >
               Aceptar
             </ModalButton>
           </ModalAction>

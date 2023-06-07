@@ -7,19 +7,28 @@ import {
   SignupH1,
   SignupInput,
 } from "../styles";
-import { SignupVerificationSpan } from "./styles";
+import { FormError, SignupVerificationSpan } from "./styles";
+import { useForm } from "react-hook-form";
+import { Alert } from "../../../assets";
 
 interface Signup {
   user: { email: string; password: string; wishlists: string[] };
-  handleUser: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-export const Signup: FC<Signup> = ({ user, handleUser }) => {
+interface Password {
+  password: string;
+}
+export const Signup: FC<Signup> = ({ user }) => {
   const { register } = useUserContext();
+  const {
+    register: registerForm,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Password>();
   const navigate = useNavigate();
-  const handleSignup = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSignup = async (data: Password, e?: React.BaseSyntheticEvent) => {
+    e?.preventDefault();
     try {
-      register(user);
+      register({ ...user, password: data.password });
       navigate("/");
     } catch (error) {
       console.log("error");
@@ -29,18 +38,27 @@ export const Signup: FC<Signup> = ({ user, handleUser }) => {
     <>
       <SignupH1>Continue Signup</SignupH1>
 
-      <SignupFormLayout onSubmit={handleSignup}>
+      <SignupFormLayout onSubmit={handleSubmit(handleSignup)}>
         <SignupInput>
           <input
-            name="password"
             id="password"
             type="password"
-            required
-            value={user.password}
-            onChange={handleUser}
+            {...registerForm("password", {
+              required: "required",
+              pattern: {
+                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                message:
+                  "Password needs to have at least 8 characters, a number and a letter",
+              },
+            })}
           />
           <label htmlFor="password">Password</label>
         </SignupInput>
+        {errors.password && (
+          <FormError>
+            <Alert /> {errors.password.message}
+          </FormError>
+        )}
         <SignupButton>Agree and Continue</SignupButton>
         <SignupVerificationSpan>
           By selecting Agree and continue, I agree to Airbnb's
