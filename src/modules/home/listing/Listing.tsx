@@ -28,7 +28,7 @@ export const Listing: FC<Listing> = ({ handleCurrent, handleModal }) => {
     );
     return response.data;
   };
-  const { getNext, data, hasNextPage } = useInfiniteScroll(getPlaces);
+  const { getNext, data } = useInfiniteScroll(getPlaces);
   const { setLastElement } = useIntersectObserver(getNext);
   useEffect(() => {
     getNext(true);

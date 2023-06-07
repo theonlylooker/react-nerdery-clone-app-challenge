@@ -10,12 +10,10 @@ import {
   ModalAction,
   ModalButton,
 } from "./styles";
-import { UserContext } from "../../../context/Context";
+import { UserContext } from "../../../context/UserContext";
 import { Wishlist } from "../../shared/types/types";
 import { Modal as ModalProps } from "./type";
 import { useWishlistContext } from "../../../context/WishlistContext";
-import styled from "styled-components";
-
 const WishListModal: FC<ModalProps> = ({
   modal,
   handleModal,

@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, FC, useContext } from "react";
 import { PlaceWithoutType } from "../modules/home/type";
 import { Wishlist } from "../modules/shared/types/types";
-import { UserContext, useUserContext } from "./Context";
+import { UserContext, useUserContext } from "./UserContext";
 import {
   createWishlistElement,
   fetchWishlists,

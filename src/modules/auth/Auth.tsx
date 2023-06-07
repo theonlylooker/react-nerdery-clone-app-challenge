@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Email, Phone, Login, Signup } from "./";
 import {
   SignupButton,

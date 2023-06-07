@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme.ts";
 import GlobalStyle from "./styles/globalStyles.ts";
 import AppRouter from "./router/AppRouter.tsx";
-import { UserProvider } from "./context/Context.tsx";
+import { UserProvider } from "./context/UserContext.tsx";
 import { WishlistProvider } from "./context/WishlistContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

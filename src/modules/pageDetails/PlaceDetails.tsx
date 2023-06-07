@@ -19,7 +19,7 @@ export const PlaceDetails = () => {
     const response = await axios.get<Place>(`${ENDPOINT}${PLACE}/${id}`);
     return response.data;
   };
-  const { data, error, loading } = useAsync(getPlaceId);
+  const { data, loading } = useAsync(getPlaceId);
   if (loading) {
     return <>loading</>;
   }
