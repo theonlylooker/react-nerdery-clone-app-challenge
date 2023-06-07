@@ -1,14 +1,9 @@
-import { FC } from "react";
 import { House, Department, Cave, Mini, Dome, Farm } from "../../../assets";
 import { Carrousel, FilterItem } from "./styles";
 import { useSearchParams } from "react-router-dom";
 
-interface FilterCarrousel {
-  handleCategory: (category: string) => void;
-}
-
-export const FilterCarrousel: FC<FilterCarrousel> = ({ handleCategory }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+export const FilterCarrousel = () => {
+  const [, setSearchParams] = useSearchParams();
   return (
     <Carrousel>
       <FilterItem

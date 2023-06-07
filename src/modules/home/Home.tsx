@@ -8,7 +8,6 @@ import { PlaceWithoutType } from "./type";
 import { Listing } from "./listing/Listing";
 
 export const Home = () => {
-  const [category, setCategory] = useState<string | null>(null);
   const [currentPlace, setCurrentPlace] = useState<PlaceWithoutType | null>(
     null
   );
@@ -16,14 +15,11 @@ export const Home = () => {
   const handleCurrent = (current: PlaceWithoutType) => {
     setCurrentPlace(current);
   };
-  const handleCategory = (category: string) => {
-    setCategory(category);
-  };
   return (
     <>
       <Layout display={"flex"} direction={"column"}>
         <StickyHeader>
-          <Header handleCategory={handleCategory} />
+          <Header />
         </StickyHeader>
         <div>
           <Content>

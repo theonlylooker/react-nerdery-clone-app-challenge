@@ -11,13 +11,8 @@ import {
   registerUser,
   updateUserWishlists,
 } from "../AXIOS/functions";
-const user: UserCtxState = {
-  email: "",
-  id: "",
-  wishlists: [],
-};
 
-const user1: UserCtxState = localStorage.getItem("airbnbUser")
+const user: UserCtxState = localStorage.getItem("airbnbUser")
   ? JSON.parse(localStorage.getItem("airbnbUser") as string)
   : null;
 
@@ -25,9 +20,11 @@ const userDefaultValue: {
   user: UserCtxState | null;
   setUser: (state: UserCtxState | null) => void;
 } = {
-  user: user1,
+  user: user,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setUser: (state: UserCtxState | null) => {},
+  setUser: (state: UserCtxState | null) => {
+    state;
+  },
 };
 
 interface UserProvider {

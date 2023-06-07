@@ -18,7 +18,9 @@ const initialWishlistState: WishlistCtx = [];
 const wishlistDefaultValue = {
   wishlist: initialWishlistState,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setWishlist: (state: WishlistCtx) => {},
+  setWishlist: (state: WishlistCtx) => {
+    state;
+  },
 };
 export const WishlistContext = createContext(wishlistDefaultValue);
 
