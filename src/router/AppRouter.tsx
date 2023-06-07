@@ -3,6 +3,7 @@ import { PlaceDetails } from "../modules/pageDetails";
 import { Wishlist, WishlistDetail } from "../modules/wishlist";
 import { Home } from "../modules/home";
 import { Auth } from "../modules/auth";
+import { Error } from "../modules/error";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/place/:id",
     element: <PlaceDetails />,
+  },
+  {
+    path: "*",
+    element: <Error />,
   },
 ]);
 
