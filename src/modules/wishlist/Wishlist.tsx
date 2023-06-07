@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Empty } from ".";
 import { WishlistContext } from "../../context/WishlistContext";
 import { Wishlists } from "./wishlists/Wishlists";
-import { UserContext } from "../../context/Context";
+import { UserContext } from "../../context/UserContext";
 
 const WishlistLayout = styled.div`
   padding: 36px 24px;

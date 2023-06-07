@@ -31,7 +31,6 @@ export const Email: FC<Email> = ({ handleSwitchType, handleUser }) => {
         `${ENDPOINT}${USERS}?email=${email}`
       );
       const data = response.data;
-
       if (data.length !== 0) {
         handleSwitchType("login");
       } else {
@@ -42,11 +41,7 @@ export const Email: FC<Email> = ({ handleSwitchType, handleUser }) => {
     }
   };
   return (
-    <SignupFormLayout
-      onSubmit={handleSubmit(handleContinue, (error) => {
-        console.log(error);
-      })}
-    >
+    <SignupFormLayout onSubmit={handleSubmit(handleContinue)}>
       <SignupInput>
         <input
           id="email"

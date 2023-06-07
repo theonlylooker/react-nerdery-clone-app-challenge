@@ -12,7 +12,7 @@ import {
   CardSpanSecondary,
 } from "./styles";
 import { Card as cardProps } from "./type";
-import { UserContext } from "../../../context/Context";
+import { UserContext } from "../../../context/UserContext";
 import { useWishlistContext } from "../../../context/WishlistContext";
 
 export const Card: FC<cardProps> = ({

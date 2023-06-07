@@ -13,8 +13,6 @@ import {
   MessageButton,
   UserIcon,
 } from "./styles";
-import styled from "styled-components";
-
 interface PlaceHost {
   avatar: string;
 }

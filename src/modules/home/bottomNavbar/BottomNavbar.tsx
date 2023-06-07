@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Heart, Search, Avatar, Airbnb } from "../../../assets";
 import { BottomNavbarItem, BottomNavbarLayout } from "./styles.ts";
-import { UserContext } from "../../../context/Context.tsx";
+import { UserContext } from "../../../context/UserContext.tsx";
 import { WishlistContext } from "../../../context/WishlistContext.tsx";
 import styled from "styled-components";
 
