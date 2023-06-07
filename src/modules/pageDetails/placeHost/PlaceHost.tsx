@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { Star } from "../../../assets";
 import {
   PlaceHostLayout,
@@ -10,15 +11,21 @@ import {
   HostName,
   PlaceHostFact,
   MessageButton,
+  UserIcon,
 } from "./styles";
+import styled from "styled-components";
 
-export const PlaceHost = () => {
+interface PlaceHost {
+  avatar: string;
+}
+
+export const PlaceHost: FC<PlaceHost> = ({ avatar }) => {
   return (
     <PlaceHostLayout>
       <PlaceHostTitle>Meet your host</PlaceHostTitle>
       <HostCard>
         <HostInformation>
-          <div>icon</div>
+          <UserIcon src={avatar} />
           <HostName>Christi-Anna</HostName>
           <div>Superhost</div>
         </HostInformation>

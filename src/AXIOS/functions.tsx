@@ -6,7 +6,7 @@ import {
   USERS,
   WISHLIST,
 } from "../modules/shared/API";
-import { register } from "../modules/signup&login/types";
+import { register } from "../modules/auth/type";
 import { WishlistCtx } from "../context/WishlistContext";
 import { UserCtxState, Wishlist } from "../modules/shared/types/types";
 import { WishlistResponse } from "../modules/home/wishListModal/type";
