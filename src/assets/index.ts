@@ -16,3 +16,5 @@ export { ReactComponent as Star } from "./star.svg";
 export { ReactComponent as ReactIcon } from "./react.svg";
 export { ReactComponent as Airbnb } from "./airbnb.svg";
 export { ReactComponent as Close } from "./close.svg";
+export { ReactComponent as Alert } from "./alert.svg";
+export { ReactComponent as Airbnb2 } from "./airbnb2.svg";

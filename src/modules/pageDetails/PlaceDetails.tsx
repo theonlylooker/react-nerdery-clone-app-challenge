@@ -23,19 +23,23 @@ export const PlaceDetails = () => {
   if (loading) {
     return <>loading</>;
   }
-  if (data) {
-    return (
-      <div>
-        <PlaceHeader />
-        <img src={data.image} />
-        <PlaceInformation city={data.city} rating={data.rating} />
-        <PlaceHost avatar={data.iconUser} />
-        <PlaceAbout description={data.description} />
-        <FixedBottomNav>
-          <PlaceDate price={data.priceDay} />
-        </FixedBottomNav>
-        <Footer />
-      </div>
-    );
-  }
+  return (
+    <div>
+      {data ? (
+        <>
+          <PlaceHeader />
+          <img src={data.image} />
+          <PlaceInformation city={data.city} rating={data.rating} />
+          <PlaceHost avatar={data.iconUser} />
+          <PlaceAbout description={data.description} />
+          <FixedBottomNav>
+            <PlaceDate price={data.priceDay} />
+          </FixedBottomNav>
+          <Footer />
+        </>
+      ) : (
+        <></>
+      )}
+    </div>
+  );
 };

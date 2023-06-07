@@ -51,6 +51,9 @@ export const ModalButton = styled.button<{ secondary?: boolean }>`
   border: none;
   text-decoration: ${({ secondary }) =>
     `${secondary ? "underline" : undefined}`};
+  :disabled {
+    background-color: ${({ theme }) => `${theme.colors.shade0230}`};
+  }
 `;
 
 export const Input = styled.div`
