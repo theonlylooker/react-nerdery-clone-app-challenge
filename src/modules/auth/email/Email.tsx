@@ -41,11 +41,7 @@ export const Email: FC<Email> = ({ handleSwitchType, handleUser }) => {
     }
   };
   return (
-    <SignupFormLayout
-      onSubmit={handleSubmit(handleContinue, (error) => {
-        console.log(error);
-      })}
-    >
+    <SignupFormLayout onSubmit={handleSubmit(handleContinue)}>
       <SignupInput>
         <input
           id="email"

@@ -48,7 +48,6 @@ const useInfiniteScroll = (
         if (response.length === 0) {
           setHasNextPage(false);
         }
-        console.log({ data }, { response });
         setData([...data, ...response]);
       }
     } catch (error) {

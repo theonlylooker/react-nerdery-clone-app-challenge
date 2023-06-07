@@ -48,7 +48,6 @@ const WishListModal: FC<ModalProps> = ({
       console.log("error to add wishlist");
     }
   };
-  console.log(wishlist.name === "", "asd");
   return (
     <Modal modal={modal}>
       <ModalBody modal={modal}>

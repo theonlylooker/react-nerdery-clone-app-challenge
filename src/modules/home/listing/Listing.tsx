@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect } from "react";
 import useInfiniteScroll from "../../../hooks/useInfiniteScroll";
 import axios from "axios";
 import { ENDPOINT, PLACE } from "../../shared/API";
@@ -30,42 +30,16 @@ export const Listing: FC<Listing> = ({ handleCurrent, handleModal }) => {
   };
   const { getNext, data, hasNextPage } = useInfiniteScroll(getPlaces);
   const { setLastElement } = useIntersectObserver(getNext);
-  // const [lastElement, setLastElement] = useState<HTMLDivElement | null>(null);
-  // const observer = useRef(
-  //   new IntersectionObserver((entries) => {
-  //     const first = entries[0];
-  //     if (first.isIntersecting) {
-  //       getNext();
-  //     }
-  //   })
-  // );
-
-  // useEffect(() => {
-  //   const currentElement = lastElement;
-  //   const currentObserver = observer.current;
-  //   if (currentElement) {
-  //     currentObserver.observe(currentElement);
-  //   }
-  //   return () => {
-  //     if (currentElement) {
-  //       currentObserver.unobserve(currentElement);
-  //     }
-  //   };
-  // }, [lastElement]);
-
   useEffect(() => {
     getNext(true);
   }, [category]);
 
   return (
     <>
-      {data?.length}
-      <button onClick={() => getNext()}>next</button>
       <CardGridContainter>
         {data?.map((place, index) => {
           return index === data.length - 1 /*&& hasNextPage*/ ? (
             <div ref={setLastElement} key={index}>
-              <>soy ref</>
               <Card
                 key={place.id}
                 id={place.id}
