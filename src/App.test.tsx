@@ -1,9 +1,4 @@
-import { render, screen } from "@testing-library/react";
-import { Home } from "./modules/home";
-import { Router } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./styles/theme";
-import { createMemoryHistory } from "history";
+import { screen } from "@testing-library/react";
 
 // beforeEach(() => {
 //   const history = createMemoryHistory();

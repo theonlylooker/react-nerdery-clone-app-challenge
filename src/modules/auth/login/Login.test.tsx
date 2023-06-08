@@ -1,9 +1,4 @@
-import {
-  render,
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import { Login } from "./Login";
@@ -23,7 +18,7 @@ beforeEach(() => {
   const history = createMemoryHistory();
   const route = "/";
   history.push(route);
-  const { baseElement } = render(
+  render(
     <Router location={history.location} navigator={history}>
       <ThemeProvider theme={theme}>
         <Login user={user} />

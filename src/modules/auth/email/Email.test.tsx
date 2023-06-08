@@ -1,33 +1,27 @@
-import {
-  render,
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import { Email } from "./Email";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../../styles/theme";
 import { expect } from "vitest";
-import { rest } from "msw";
 
 const dampFunction1 = (params: string) => {
+  params;
   return;
 };
 const dampFunction2 = (param1: string, param2: string) => {
+  param1;
+  param2;
   return;
 };
 
-let element: HTMLElement;
-
 beforeEach(() => {
-  const { baseElement } = render(
+  render(
     <ThemeProvider theme={theme}>
       <Email handleSwitchType={dampFunction1} handleUser={dampFunction2} />
     </ThemeProvider>
   );
-  element = baseElement;
 });
 
 test("Rendering Email component", () => {
@@ -53,15 +47,3 @@ test("Continue with wrong email", async () => {
   const error = await screen.findByTestId("error");
   expect(error.textContent).toBe(" Enter a valid email");
 });
-
-// test("Continue with right email", async () => {
-//   const continueButton = screen.getByTestId("continueButton");
-//   const inputText = screen.getByTestId("emailInput") as HTMLInputElement;
-//   await userEvent.type(inputText, "test@test.com");
-//   await userEvent.click(continueButton);
-//   //await waitForElementToBeRemoved(element);
-//   //await expect(element).not.toBeInTheDocument();
-//   await waitFor(() => {
-//     expect(element).not.toBeInTheDocument();
-//   });
-// });

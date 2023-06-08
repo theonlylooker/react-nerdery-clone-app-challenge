@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import { Auth } from "./Auth";
-import { rest } from "msw";
 import { build } from "@jackfranklin/test-data-bot";
 import { faker } from "@faker-js/faker";
 import { ThemeProvider } from "styled-components";
@@ -10,8 +9,6 @@ import { theme } from "../../styles/theme";
 import { expect, describe } from "vitest";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-
-let element: HTMLElement;
 
 const buildLoginForm = build({
   fields: {
@@ -24,14 +21,13 @@ beforeEach(() => {
   const history = createMemoryHistory();
   const route = "/";
   history.push(route);
-  const { baseElement } = render(
+  render(
     <Router location={history.location} navigator={history}>
       <ThemeProvider theme={theme}>
         <Auth />
       </ThemeProvider>
     </Router>
   );
-  element = baseElement;
 });
 
 describe("Auth Component", () => {
@@ -63,7 +59,7 @@ describe("Auth Component", () => {
     await userEvent.type(inputText, email);
     expect(inputText.value).toBe(email);
     await userEvent.click(continueButton);
-    const signup = await screen.findByTestId("signup");
+    await screen.findByTestId("signup");
     const passwordInput = screen.getByTestId("passwordInput");
     const agreeButton = screen.getByTestId("agreeButton");
     await userEvent.type(passwordInput, password);
