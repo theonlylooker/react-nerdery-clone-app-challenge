@@ -52,7 +52,11 @@ export const Auth = () => {
                 <span>or</span>
                 <hr />
               </SignupSeparation>
-              <SignupButton onClick={handleTypeLogin} action="secondary">
+              <SignupButton
+                data-testid="switchPhoneButton"
+                onClick={handleTypeLogin}
+                action="secondary"
+              >
                 Continue with Phone
               </SignupButton>
             </>
@@ -63,7 +67,11 @@ export const Auth = () => {
                 <span>or</span>
                 <hr />
               </SignupSeparation>
-              <SignupButton onClick={handleTypeLogin} action="secondary">
+              <SignupButton
+                data-testid="switchEmailButton"
+                onClick={handleTypeLogin}
+                action="secondary"
+              >
                 Continue with Email
               </SignupButton>
             </>
