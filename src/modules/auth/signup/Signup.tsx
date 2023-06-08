@@ -35,16 +35,17 @@ export const Signup: FC<Signup> = ({ user }) => {
     }
   };
   return (
-    <>
+    <div data-testid="signup">
       <SignupH1>Continue Signup</SignupH1>
 
       <SignupFormLayout onSubmit={handleSubmit(handleSignup)}>
         <SignupInput>
           <input
+            data-testid="passwordInput"
             id="password"
             type="password"
             {...registerForm("password", {
-              required: "required",
+              required: "Password is required",
               pattern: {
                 value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
                 message:
@@ -55,11 +56,13 @@ export const Signup: FC<Signup> = ({ user }) => {
           <label htmlFor="password">Password</label>
         </SignupInput>
         {errors.password && (
-          <FormError>
+          <FormError data-testid="error">
             <Alert /> {errors.password.message}
           </FormError>
         )}
-        <SignupButton>Agree and Continue</SignupButton>
+        <SignupButton data-testid="agreeButton">
+          Agree and Continue
+        </SignupButton>
         <SignupVerificationSpan>
           By selecting Agree and continue, I agree to Airbnb's
           <a href="">Terms of Service, Payments Terms of Service</a>, and
@@ -67,6 +70,6 @@ export const Signup: FC<Signup> = ({ user }) => {
           <a href="">Privacy Policy</a> .
         </SignupVerificationSpan>
       </SignupFormLayout>
-    </>
+    </div>
   );
 };
