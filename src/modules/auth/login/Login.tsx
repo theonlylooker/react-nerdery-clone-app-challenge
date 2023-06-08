@@ -42,20 +42,21 @@ export const Login: FC<Login> = ({ user }) => {
       <SignupFormLayout onSubmit={handleSubmit(handleLogin)}>
         <SignupInput>
           <input
+            data-testid="passwordInput"
             id="password"
             type="password"
             {...register("password", {
-              required: "required",
+              required: "Password is required",
             })}
           />
           <label htmlFor="password">Password</label>
         </SignupInput>
         {errors.password && (
-          <FormError>
+          <FormError data-testid="error">
             <Alert /> {errors.password.message}
           </FormError>
         )}
-        <SignupButton>Log In</SignupButton>
+        <SignupButton data-testid="loginButton">Log In</SignupButton>
       </SignupFormLayout>
     </>
   );
