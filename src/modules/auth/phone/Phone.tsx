@@ -4,7 +4,10 @@ import { SignupSelect } from "./styles";
 
 export const Phone = () => {
   return (
-    <SignupFormLayout onSubmit={() => alert("not implemented")}>
+    <SignupFormLayout
+      data-testid="phone"
+      onSubmit={() => alert("not implemented")}
+    >
       <SignupSelect>
         <select name="" id="">
           <option value="">

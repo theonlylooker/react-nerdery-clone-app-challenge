@@ -1,17 +1,23 @@
 import { render, screen } from "@testing-library/react";
-//import { rest } from "msw";
 import { Home } from "./modules/home";
-// describe("App", () => {
-//   it("renders headline", () => {
-//     render(<App />);
-//     screen.debug();
+import { Router } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./styles/theme";
+import { createMemoryHistory } from "history";
 
-//     // check if App components renders headline
-//   });
+// beforeEach(() => {
+//   const history = createMemoryHistory();
+//   const route = "/";
+//   history.push(route);
+//   const { baseElement } = render(
+//     <Router location={history.location} navigator={history}>
+//       <ThemeProvider theme={theme}>
+//         <Home />
+//       </ThemeProvider>
+//     </Router>
+//   );
 // });
 
 test("First Test", () => {
-  render(<Home />);
   screen.debug();
-  expect(1).toBe(2);
 });

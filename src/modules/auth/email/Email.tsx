@@ -41,10 +41,14 @@ export const Email: FC<Email> = ({ handleSwitchType, handleUser }) => {
     }
   };
   return (
-    <SignupFormLayout onSubmit={handleSubmit(handleContinue)}>
+    <SignupFormLayout
+      data-testid="email"
+      onSubmit={handleSubmit(handleContinue)}
+    >
       <SignupInput>
         <input
           id="email"
+          data-testid="emailInput"
           {...register("email", {
             required: "Email is required",
             pattern: {
@@ -56,11 +60,11 @@ export const Email: FC<Email> = ({ handleSwitchType, handleUser }) => {
         <label htmlFor="email">Email</label>
       </SignupInput>
       {errors.email && (
-        <FormError>
+        <FormError data-testid="error">
           <Alert /> {errors.email.message}
         </FormError>
       )}
-      <SignupButton>Continue</SignupButton>
+      <SignupButton data-testid="continueButton">Continue</SignupButton>
     </SignupFormLayout>
   );
 };
