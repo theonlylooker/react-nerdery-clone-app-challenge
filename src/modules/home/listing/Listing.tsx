@@ -49,7 +49,7 @@ export const Listing: FC<Listing> = ({ handleCurrent, handleModal }) => {
 
   return (
     <>
-      <CardGridContainter>
+      <CardGridContainter data-testid={"listing"}>
         {data?.map((place, index) => {
           return index === data.length - 1 /*&& hasNextPage*/ ? (
             <div ref={setLastElement} key={index}>

@@ -6,7 +6,6 @@ import WishListModal from "./wishListModal/WishListModal";
 import useModal from "../../hooks/useModal";
 import { PlaceWithoutType } from "./type";
 import { Listing } from "./listing/Listing";
-import { SearchModal } from "./searchModal/SearchModal";
 
 export const Home = () => {
   const [currentPlace, setCurrentPlace] = useState<PlaceWithoutType | null>(

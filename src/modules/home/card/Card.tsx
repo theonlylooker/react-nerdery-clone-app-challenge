@@ -33,7 +33,6 @@ export const Card: FC<cardProps> = ({
   const { addWishlistElement, deleteWishlistElement, allElements } =
     useWishlistContext();
   const [wished, setWished] = useState(false);
-  //const { wishlist, setWishlist } = useContext(WishlistContext);
 
   useEffect(() => {
     setWished(allElements.includes(id));
@@ -102,24 +101,28 @@ export const Card: FC<cardProps> = ({
   return (
     <CardContainer onClick={navigateTo}>
       <div className="image">
-        <CardImage src={image} />
-        <CardHeart wished={wished} onClick={handleWishList} />
+        <CardImage src={image} data-testid="image" />
+        <CardHeart
+          wished={wished}
+          onClick={handleWishList}
+          data-testid="heart"
+        />
       </div>
       <CardContent>
         <CardInfo>
-          <div className="info">
+          <div className="info" data-testid="info">
             <CardSpanDefault display="block">
               {city},{country}
             </CardSpanDefault>
             <CardSpanSecondary display="block">{description}</CardSpanSecondary>
             <CardSpanSecondary display="block">Oct 23 - 28</CardSpanSecondary>
           </div>
-          <div className="price">
+          <div className="price" data-testid="price">
             <CardSpanDefault>${priceDay} </CardSpanDefault>
             night
           </div>
         </CardInfo>
-        <div className="rating">
+        <div className="rating" data-testid="rating">
           <CardRating>
             <Star />
             <span>{rating}</span>
