@@ -1,6 +1,5 @@
 import { useState, FC } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Close } from "../../../assets";
 
@@ -91,14 +90,8 @@ interface SearchModal {
 }
 
 export const SearchModal: FC<SearchModal> = ({ handleModal }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
   const [search, setSearch] = useState<Search>({ search: "", adults: 0 });
-  const [country, setCountry] = useState("");
-  const [adults, setAdults] = useState(0);
   const navigate = useNavigate();
-  const handleCountry = () => {
-    setCountry("");
-  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

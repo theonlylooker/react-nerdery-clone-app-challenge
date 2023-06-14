@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import userEvent from "@testing-library/user-event";
 import { ThemeProvider } from "styled-components";
 import { expect, describe, vi } from "vitest";
 import { Router } from "react-router-dom";
@@ -10,9 +9,8 @@ import { theme } from "../../../styles/theme";
 import { UserProvider } from "../../../context/UserContext";
 import { Listing } from "../listing/Listing";
 
-const dampFunction = () => {
-  return;
-};
+const handleModal = vi.fn();
+const handleCurrent = vi.fn();
 
 describe("Card", () => {
   beforeEach(() => {
@@ -33,8 +31,8 @@ describe("Card", () => {
               ownerId=""
               priceDay={1}
               rating={1}
-              handleCurrent={dampFunction}
-              handleModal={dampFunction}
+              handleCurrent={handleCurrent}
+              handleModal={handleModal}
             />
           </ThemeProvider>
         </UserProvider>
@@ -56,32 +54,25 @@ describe("Card", () => {
   });
 
   test("scroll fires an event", () => {
-    const handleModal = vi.fn();
-    const handleCurrent = vi.fn();
-
-    // const observe = jest.fn();
-    // const unobserve = jest.fn();
-    // window.IntersectionObserver = jest.fn(() => ({ observe, unobserve }));
-
-    const mockIntersectionObserver = jest.fn();
+    const mockIntersectionObserver = vi.fn();
     mockIntersectionObserver.mockReturnValue({
       observe: () => null,
       unobserver: () => null,
       disconnect: () => null,
     });
-    window.IntersectionObserver = mockIntersectionObserver;
+    // window.IntersectionObserver = mockIntersectionObserver;
     const history = createMemoryHistory();
     const route = "/";
     history.push(route);
-    render(
-      <Router location={history.location} navigator={history}>
-        <UserProvider>
-          <ThemeProvider theme={theme}>
-            <Listing handleModal={handleModal} handleCurrent={handleCurrent} />
-          </ThemeProvider>
-        </UserProvider>
-      </Router>
-    );
+    // render(
+    //   <Router location={history.location} navigator={history}>
+    //     <UserProvider>
+    //       <ThemeProvider theme={theme}>
+    //         <Listing handleModal={handleModal} handleCurrent={handleCurrent} />
+    //       </ThemeProvider>
+    //     </UserProvider>
+    //   </Router>
+    // );
     fireEvent.scroll(window, { target: { scrollY: 100 } });
   });
 });

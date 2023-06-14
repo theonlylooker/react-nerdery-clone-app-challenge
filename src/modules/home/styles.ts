@@ -9,4 +9,7 @@ export const FixedBottomNav = styled.div`
   position: fixed;
   bottom: 0;
   width: 100%;
+  @media (min-width: 740px) {
+    display: none;
+  }
 `;

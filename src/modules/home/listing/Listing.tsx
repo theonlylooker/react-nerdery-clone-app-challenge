@@ -14,7 +14,7 @@ interface Listing {
 }
 
 export const Listing: FC<Listing> = ({ handleCurrent, handleModal }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const category = searchParams.get("type");
   const search = useParams();
   const getPlaces = async (page: number) => {

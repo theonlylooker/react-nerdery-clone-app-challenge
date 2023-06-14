@@ -6,20 +6,13 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../../../styles/theme";
 import { expect } from "vitest";
 
-const dampFunction1 = (params: string) => {
-  params;
-  return;
-};
-const dampFunction2 = (param1: string, param2: string) => {
-  param1;
-  param2;
-  return;
-};
+const handleSwitchType = vi.fn();
+const handleUser = vi.fn();
 
 beforeEach(() => {
   render(
     <ThemeProvider theme={theme}>
-      <Email handleSwitchType={dampFunction1} handleUser={dampFunction2} />
+      <Email handleSwitchType={handleSwitchType} handleUser={handleUser} />
     </ThemeProvider>
   );
 });
@@ -47,3 +40,15 @@ test("Continue with wrong email", async () => {
   const error = await screen.findByTestId("error");
   expect(error.textContent).toBe(" Enter a valid email");
 });
+
+// test("Continue with right email", async () => {
+//   const continueButton = screen.getByTestId("continueButton");
+//   const inputText = screen.getByTestId("emailInput") as HTMLInputElement;
+//   await userEvent.type(inputText, "test@test.com");
+//   await userEvent.click(continueButton);
+//   //await waitForElementToBeRemoved(element);
+//   //await expect(element).not.toBeInTheDocument();
+//   await waitFor(() => {
+//     expect(element).not.toBeInTheDocument();
+//   });
+// });
