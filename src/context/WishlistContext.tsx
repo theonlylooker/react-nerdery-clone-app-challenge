@@ -7,7 +7,7 @@ import {
   fetchWishlists,
   deleteWishlistElement as deleteitem,
   createWishlist,
-} from "../AXIOS/functions";
+} from "../API/functions";
 
 export type WishlistItem = Omit<Wishlist, "userId">;
 

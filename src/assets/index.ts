@@ -18,3 +18,6 @@ export { ReactComponent as Airbnb } from "./airbnb.svg";
 export { ReactComponent as Close } from "./close.svg";
 export { ReactComponent as Alert } from "./alert.svg";
 export { ReactComponent as Airbnb2 } from "./airbnb2.svg";
+export { ReactComponent as World } from "./world.svg";
+export { ReactComponent as Hamburger } from "./hamburger.svg";
+export { ReactComponent as AirbnbText } from "./airbnbtext.svg";

@@ -32,6 +32,7 @@ export const Home = () => {
           handleModal={handleModal}
           currentPlace={currentPlace}
         />
+
         <Footer />
         <FixedBottomNav>
           <BottomNavbar />

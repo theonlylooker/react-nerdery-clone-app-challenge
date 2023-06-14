@@ -6,11 +6,7 @@ import React, {
   useEffect,
 } from "react";
 import { UserCtxState } from "../modules/shared/types/types";
-import {
-  loginUser,
-  registerUser,
-  updateUserWishlists,
-} from "../AXIOS/functions";
+import { loginUser, registerUser, updateUserWishlists } from "../API/functions";
 
 const user: UserCtxState = localStorage.getItem("airbnbUser")
   ? JSON.parse(localStorage.getItem("airbnbUser") as string)

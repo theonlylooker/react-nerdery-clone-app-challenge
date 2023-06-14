@@ -4,7 +4,7 @@ import axios from "axios";
 import { ENDPOINT, PLACE } from "../../shared/API";
 import { Place } from "../../shared/types/types";
 import { Card, CardGridContainter } from "..";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { PlaceWithoutType } from "../type";
 import useIntersectObserver from "../../../hooks/useIntersectObserver";
 
@@ -14,9 +14,22 @@ interface Listing {
 }
 
 export const Listing: FC<Listing> = ({ handleCurrent, handleModal }) => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("type");
+  const search = useParams();
   const getPlaces = async (page: number) => {
+    if (Object.keys(search).length !== 0) {
+      if (category) {
+        const response = await axios.get<Place[]>(
+          `${ENDPOINT}${PLACE}?country=${search.id}?type=${category}&_page=${page}`
+        );
+        return response.data;
+      }
+      const response = await axios.get<Place[]>(
+        `${ENDPOINT}${PLACE}?country=${search.id}&_page=${page}`
+      );
+      return response.data;
+    }
     if (category) {
       const response = await axios.get<Place[]>(
         `${ENDPOINT}${PLACE}?type=${category}&_page=${page}`
@@ -32,11 +45,11 @@ export const Listing: FC<Listing> = ({ handleCurrent, handleModal }) => {
   const { setLastElement } = useIntersectObserver(getNext);
   useEffect(() => {
     getNext(true);
-  }, [category]);
+  }, [category, search]);
 
   return (
     <>
-      <CardGridContainter>
+      <CardGridContainter data-testid={"listing"}>
         {data?.map((place, index) => {
           return index === data.length - 1 /*&& hasNextPage*/ ? (
             <div ref={setLastElement} key={index}>

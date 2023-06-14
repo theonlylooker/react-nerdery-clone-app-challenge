@@ -21,6 +21,9 @@ export const SearchI = styled.div`
     padding: 10px;
     border-radius: 100%;
   }
+  @media (min-width: 740px) {
+    display: none;
+  }
 `;
 
 export const SearchContainer = styled.div`
