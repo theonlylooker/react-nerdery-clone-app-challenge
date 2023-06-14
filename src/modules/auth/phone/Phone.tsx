@@ -6,7 +6,10 @@ export const Phone = () => {
   return (
     <SignupFormLayout
       data-testid="phone"
-      onSubmit={() => alert("not implemented")}
+      onSubmit={(e) => {
+        alert("not implemented");
+        e.preventDefault();
+      }}
     >
       <SignupSelect>
         <select name="" id="">
