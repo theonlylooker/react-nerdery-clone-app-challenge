@@ -23,7 +23,7 @@ export const Phone = () => {
         <label htmlFor="">Country/Region</label>
       </SignupSelect>
       <SignupInput>
-        <input type="text" />
+        <input type="tel" pattern="[+]{1}[0-9]{11,14}" required />
         <label htmlFor="">Phone Number</label>
       </SignupInput>
       <SignupVerificationSpan>
