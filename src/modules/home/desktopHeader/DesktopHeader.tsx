@@ -141,7 +141,7 @@ export const DesktopHeader = () => {
   return (
     <DesktopHeaderLayout>
       <DesktopHeaderLeft>
-        <DesktopHeaderLogos>
+        <DesktopHeaderLogos onClick={() => navigate("/")}>
           <DesktopHeaderLogo />
           <DesktopHeaderLogoText />
         </DesktopHeaderLogos>
