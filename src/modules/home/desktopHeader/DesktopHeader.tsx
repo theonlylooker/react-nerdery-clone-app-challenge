@@ -98,6 +98,7 @@ const DesktopHeaderRight = styled.div`
 `;
 const DesktopHeaderLogos = styled.div`
   display: flex;
+  cursor: pointer;
 `;
 const DesktopHeaderAvatar = styled(Avatar)`
   fill: ${({ theme }) => `${theme.colors.neutral08}`};
