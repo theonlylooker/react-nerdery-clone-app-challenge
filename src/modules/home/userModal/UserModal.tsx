@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { UserContext, useUserContext } from "../../../context/UserContext";
+import { UserContext } from "../../../context/UserContext";
 import { WishlistContext } from "../../../context/WishlistContext";
 
 const UserModalLayout = styled.div`
