@@ -7,7 +7,6 @@ import { createMemoryHistory } from "history";
 import { Card } from "..";
 import { theme } from "../../../styles/theme";
 import { UserProvider } from "../../../context/UserContext";
-import { Listing } from "../listing/Listing";
 
 const handleModal = vi.fn();
 const handleCurrent = vi.fn();
