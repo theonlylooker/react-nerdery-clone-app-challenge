@@ -50,7 +50,7 @@ To test the project run the following command:
  npm run test
 ```
 ## Live
-The project is deployed on the following link `Demo`: https://react-nerdery-clone-app-challenge.vercel.app/
+The project is deployed on the following link `Demo`: https://dashboard.render.com/static/srv-ci0euib3cv232e8m5re0/redirects
 
 ## Project Structure
 The project is structured as follows:
