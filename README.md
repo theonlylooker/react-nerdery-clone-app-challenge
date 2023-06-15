@@ -50,7 +50,7 @@ To test the project run the following command:
  npm run test
 ```
 ## Live
-The project is deployed on the following link `Demo`: https://dashboard.render.com/static/srv-ci0euib3cv232e8m5re0/redirects
+The project is deployed on the following link `Demo`: https://eduardo-main-airbnb.onrender.com/
 
 ## Project Structure
 The project is structured as follows:
